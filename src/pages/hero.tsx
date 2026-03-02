@@ -2,6 +2,7 @@ import twentySix from "../assets/heroTitle.svg";
 import passBrushstroke from "../assets/passBrushstroke.webp";
 import { forwardRef, useEffect, useRef } from "react";
 import gsap from "gsap";
+import bg from "../assets/about_background.png";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -41,7 +42,7 @@ const Hero = forwardRef<HTMLDivElement>((_, ref) => {
         <div ref={bgRef} className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0" style={{ backgroundImage: "url('/bg-layer.webp')" }} />
         <div ref={hutRef} className="absolute inset-0 bg-cover bg-center bg-no-repeat z-10" style={{ backgroundImage: "url('/hut-layer.webp')" }}/>
         <div ref={rocksRef} className="absolute inset-0 bg-cover bg-center bg-no-repeat z-20" style={{ backgroundImage: "url('/rocks-layer.webp')" }}/>
-        <div ref={transitionRef} className="absolute left-0 right-0 -bottom-60 h-60 bg-no-repeat bg-center pointer-events-none will-change-transform z-30" style={{ backgroundImage: "url('/background1.png')" }}/>
+        <div ref={transitionRef} className="absolute left-0 right-0 -bottom-60 h-60 bg-no-repeat bg-center pointer-events-none will-change-transform z-30" style={{ backgroundImage: `url(${bg})` }}/>
         <div ref={contentRef} className="absolute bottom-15 left-30 z-30">
           <div className="flex items-center justify-center flex-col">
             <img src={twentySix} alt="26" className="w-lg" />

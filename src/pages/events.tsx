@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import ScrollTrigger from "gsap/ScrollTrigger";
 import { Calendar, MapPin } from "lucide-react";
 
 import handleTop from "../assets/events/scroll-handle-top.png";
@@ -10,7 +9,6 @@ import paperTexture from "../assets/events/scroll-paper.png";
 import eventsBg from "../assets/events/events-bg.png";
 import buttonTexture from "../assets/events/back.png"; // <-- Imported the new texture
 
-gsap.registerPlugin(ScrollTrigger);
 
 interface EventData {
     title: React.ReactNode;

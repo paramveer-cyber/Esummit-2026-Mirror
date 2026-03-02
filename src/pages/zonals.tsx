@@ -5,7 +5,7 @@ import timeline from "../assets/zonals_timeline.png";
 const Zonals: React.FC = () => {
   return (
     <section
-      className="w-full h-screen relative overflow-hidden"
+      className="w-full h-screen relative overflow-hidden -mt-60"
       style={{
         backgroundImage: `url(${bg})`,
         backgroundSize: "cover",

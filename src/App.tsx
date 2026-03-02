@@ -1,16 +1,16 @@
-import Hero from "./pages/hero";
-import Petals from "./components/Petals/petals";
+import { useGSAP } from "@gsap/react";
 import { useEffect, useRef } from "react";
 import Lenis from "@studio-freight/lenis";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
 import Navbar from "./components/Navbar/navbar";
+import Petals from "./components/Petals/petals";
+import Hero from "./pages/hero";
 import About from "./pages/about";
 import Events from "./pages/events";
 import Speakers from "./pages/speakers";
 import Sponsors from "./pages/sponsors";
-import Zonals from "./pages/zonals"
+import Zonals from "./pages/zonals";
 gsap.registerPlugin(ScrollTrigger);
 
 function App() {
@@ -99,7 +99,6 @@ function App() {
             <Zonals />
             <Events />
             <Speakers />
-            
             <Sponsors />
             <Petals count={50} />
         </>
