@@ -1,9 +1,8 @@
-import { useGSAP } from "@gsap/react";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Lenis from "@studio-freight/lenis";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import { LenisProvider } from "./contexts/LenisContext";
 import Navbar from "./components/Navbar/navbar";
 import Petals from "./components/Petals/petals";
 import Hero from "./pages/hero";
@@ -13,114 +12,44 @@ import Speakers from "./pages/speakers";
 import Sponsors from "./pages/sponsors";
 import Zonals from "./pages/zonals";
 import AllEvents from "./pages/allEvents";
+import Footer from "./pages/footer";
 gsap.registerPlugin(ScrollTrigger);
 
-function App() {
-    const firstHeroRef = useRef<HTMLDivElement | null>(null);
-    const navbarRef = useRef<HTMLDivElement | null>(null);
-    const defaultScale = 0.75;
-    const scaleDownFactor = 0.4;
-    let scaled = false;
-    let hovered = false;
-
-    useEffect(() => {
-        const lenis = new Lenis({ lerp: 0.1 });
-
-        const raf = (time: number) => {
-            lenis.raf(time);
-            ScrollTrigger.update();
-            requestAnimationFrame(raf);
-        };
-
-        requestAnimationFrame(raf);
-    }, []);
-
-    useGSAP(() => {
-        if (!firstHeroRef.current || !navbarRef.current) return;
-
-        const nav = navbarRef.current;
-        gsap.set(nav, {
-            scaleX: defaultScale,
-            scaleY: defaultScale + 0.05,
-        });
-        gsap.to(nav, {
-            scaleX: scaleDownFactor,
-            scaleY: scaleDownFactor + 0.05,
-            ease: "back.out(1.7)",
-            scrollTrigger: {
-                trigger: firstHeroRef.current,
-                start: "top top",
-                end: "bottom top",
-                scrub: true,
-                onUpdate: (self) => {
-                    scaled = self.progress > 0.05;
-                    if (!scaled && hovered) {
-                        hovered = false;
-                        gsap.to(nav, {
-                            scaleX: defaultScale,
-                            scaleY: defaultScale + 0.05,
-                            duration: 0.2,
-                        });
-                    }
-                },
-            },
-        });
-
-        nav.addEventListener("mouseenter", () => {
-            if (!scaled) return;
-
-            hovered = true;
-
-            gsap.to(nav, {
-                scaleX: defaultScale,
-                scaleY: defaultScale + 0.05,
-                duration: 0.3,
-                ease: "back.out(1.7)",
-            });
-        });
-
-        nav.addEventListener("mouseleave", () => {
-            if (!scaled) return;
-
-            hovered = false;
-
-            gsap.to(nav, {
-                scaleX: scaleDownFactor,
-                scaleY: scaleDownFactor + 0.05,
-                duration: 0.3,
-                ease: "back.out(1.7)",
-            });
-        });
-    }, []);
+function HomePage() {
+    const heroRef = useRef<HTMLDivElement | null>(null);
 
     return (
+        <>
+            <Navbar heroRef={heroRef} />
+            <Hero ref={heroRef} />
+            <About />
+            <Zonals />
+            <Events />
+            <Speakers />
+            <Sponsors />
+            <Petals count={50} />
+            <Footer />
+        </>
+    );
+}
+
+function App() {
+    return (
         <BrowserRouter>
-            <Routes>
-                <Route
-                    path="/"
-                    element={
-                        <>
-                            <Navbar ref={navbarRef} />
-                            <Hero ref={firstHeroRef} />
-                            <About />
-                            <Zonals />
-                            <Events />
-                            <Speakers />
-                            <Sponsors />
-                            <Petals count={50} />
-                        </>
-                    }
-                />
-                <Route
-                    path="/all-events"
-                    element={
-                        <>
-                            <AllEvents />
-                            <Petals count={50} />
-                        </>
-                    }
-                />
-            </Routes>
+            <LenisProvider>
+                <Routes>
+                    <Route path="/" element={<HomePage />} />
+                    <Route
+                        path="/all-events"
+                        element={
+                            <>
+                                <AllEvents />
+                                <Petals count={50} />
+                            </>
+                        }
+                    />
+                </Routes>
+            </LenisProvider>
         </BrowserRouter>
     );
 }

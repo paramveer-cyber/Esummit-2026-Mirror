@@ -77,6 +77,7 @@ const Events = () => {
 
     return (
         <section
+            id="events"
             ref={containerRef}
             className="min-h-screen w-full flex flex-col items-center justify-center py-20 relative overflow-hidden"
             style={{ backgroundImage: `url(${eventsBg})` }}

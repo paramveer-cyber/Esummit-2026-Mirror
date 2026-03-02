@@ -6,6 +6,7 @@ import logo from "../assets/about_logo.png";
 const About: React.FC = () => {
   return (
     <section
+      id="about"
       className="w-full h-screen relative overflow-hidden"
       style={{
         backgroundImage: `url(${bg})`,

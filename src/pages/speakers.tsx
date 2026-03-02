@@ -64,6 +64,7 @@ const Speakers = () => {
 
     return (
         <section
+            id="speakers"
             ref={containerRef}
             className="min-h-screen w-full flex flex-col items-center justify-center py-24 relative overflow-hidden"
             style={{
