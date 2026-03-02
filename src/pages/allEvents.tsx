@@ -8,9 +8,9 @@ import buttonTexture from "../assets/events/back.png";
 import EventScroll from "../components/EventScroll/EventScroll";
 import eventsData from "../data/events.json";
 
-const Events = () => {
+const AllEvents = () => {
     const containerRef = useRef<HTMLDivElement>(null);
-    const eventList = eventsData.featuredEvents;
+    const eventList = eventsData.allEvents;
 
     useGSAP(
         () => {
@@ -45,7 +45,7 @@ const Events = () => {
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: containerRef.current,
-                    start: "top 60%",
+                    start: "top 80%",
                     end: "bottom bottom",
                     toggleActions: "play none none reverse",
                 },
@@ -56,7 +56,7 @@ const Events = () => {
                 opacity: 1,
                 y: 0,
                 duration: 0.6,
-                stagger: 0.15,
+                stagger: 0.1,
                 ease: "power2.out",
             });
 
@@ -66,50 +66,63 @@ const Events = () => {
                     height: "280px",
                     duration: 1.5,
                     ease: "elastic.out(1, 0.5)",
-                    stagger: 0.2,
+                    stagger: 0.15,
                 },
-                "-=0.3",
+                "-=0.3"
             );
         },
-        { scope: containerRef },
+        { scope: containerRef }
     );
 
     return (
         <section
             ref={containerRef}
-            className="min-h-screen w-full flex flex-col items-center justify-center py-20 relative overflow-hidden"
-            style={{ backgroundImage: `url(${eventsBg})` }}
+            className="min-h-screen w-full flex flex-col items-center py-20 relative overflow-hidden"
+            style={{
+                backgroundImage: `url(${eventsBg})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundAttachment: "fixed",
+            }}
         >
-            <div className="text-center mb-16 md:mb-28 relative z-30">
+            {/* Header */}
+            <div className="text-center mb-16 md:mb-24 relative z-30 pt-10">
                 <h2
-                    className="text-6xl md:text-8xl text-[#2d1b2d] drop-shadow-sm select-none"
+                    className="text-5xl md:text-7xl lg:text-8xl text-[#2d1b2d] drop-shadow-sm select-none"
                     style={{ fontFamily: "Akumaru, serif" }}
                 >
-                    EVENTS
+                    ALL EVENTS
                 </h2>
+                <p
+                    className="mt-4 text-lg md:text-xl text-[#5e2f0d] font-serif tracking-wide opacity-80"
+                >
+                    Explore everything E-Summit 2026 has to offer
+                </p>
             </div>
 
-            <div className="container mx-auto px-4 flex flex-wrap justify-center items-start gap-x-8 lg:gap-x-12 gap-y-24 relative z-30">
+            {/* Events Grid */}
+            <div className="container mx-auto px-4 flex flex-wrap justify-center items-start gap-x-6 lg:gap-x-10 gap-y-20 relative z-30">
                 {eventList.map((event, index) => (
                     <EventScroll key={event.id} index={index} event={event} />
                 ))}
             </div>
 
-            <div className="w-full mt-40 md:mt-56 relative z-30 flex items-center justify-center">
+            {/* Back to Home Button */}
+            <div className="w-full mt-32 md:mt-40 relative z-30 flex items-center justify-center pb-10">
                 <Link
-                    to="/all-events"
+                    to="/"
                     className="relative group inline-flex items-center justify-center cursor-pointer transition-transform duration-300 hover:scale-105 active:scale-95"
                 >
                     <img
                         src={buttonTexture}
                         alt="Texture"
-                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] md:w-[380px] max-w-none pointer-events-none z-0 opacity-90 group-hover:opacity-100 transition-opacity"
+                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[240px] md:w-[320px] max-w-none pointer-events-none z-0 opacity-90 group-hover:opacity-100 transition-opacity"
                     />
                     <span
-                        className="relative z-10 px-12 py-6 text-3xl md:text-4xl text-[#5e2f0d] drop-shadow-md font-bold tracking-wider group-hover:text-[#2A1B1B] transition-colors"
+                        className="relative z-10 px-10 py-5 text-2xl md:text-3xl text-[#5e2f0d] drop-shadow-md font-bold tracking-wider group-hover:text-[#2A1B1B] transition-colors"
                         style={{ fontFamily: "Akumaru, serif" }}
                     >
-                        All Events
+                        Back Home
                     </span>
                 </Link>
             </div>
@@ -117,4 +130,4 @@ const Events = () => {
     );
 };
 
-export default Events;
+export default AllEvents;

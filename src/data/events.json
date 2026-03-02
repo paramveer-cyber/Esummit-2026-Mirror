@@ -1,0 +1,114 @@
+{
+  "featuredEvents": [
+    {
+      "id": 1,
+      "title": "PITCH\nCAFE\nEVENT",
+      "date": "March 13, 2026",
+      "venue": "IIIT Delhi, LHC",
+      "link": "#"
+    },
+    {
+      "id": 2,
+      "title": "HACK\nATHON\nFINALS",
+      "date": "March 14, 2026",
+      "venue": "IIIT Delhi, R&D",
+      "link": "#"
+    },
+    {
+      "id": 3,
+      "title": "SPEAKER\nSESSIONS\nLIVE",
+      "date": "March 15, 2026",
+      "venue": "Main Auditorium",
+      "link": "#"
+    },
+    {
+      "id": 4,
+      "title": "NET\nWORKING\nDINNER",
+      "date": "March 15, 2026",
+      "venue": "Dining Block",
+      "link": "#"
+    }
+  ],
+  "allEvents": [
+    {
+      "id": 1,
+      "title": "PITCH\nCAFE\nEVENT",
+      "date": "March 13, 2026",
+      "venue": "IIIT Delhi, LHC",
+      "link": "#",
+      "category": "Competition"
+    },
+    {
+      "id": 2,
+      "title": "HACK\nATHON\nFINALS",
+      "date": "March 14, 2026",
+      "venue": "IIIT Delhi, R&D",
+      "link": "#",
+      "category": "Competition"
+    },
+    {
+      "id": 3,
+      "title": "SPEAKER\nSESSIONS\nLIVE",
+      "date": "March 15, 2026",
+      "venue": "Main Auditorium",
+      "link": "#",
+      "category": "Talk"
+    },
+    {
+      "id": 4,
+      "title": "NET\nWORKING\nDINNER",
+      "date": "March 15, 2026",
+      "venue": "Dining Block",
+      "link": "#",
+      "category": "Networking"
+    },
+    {
+      "id": 5,
+      "title": "STARTUP\nEXPO\n2026",
+      "date": "March 13, 2026",
+      "venue": "Exhibition Hall",
+      "link": "#",
+      "category": "Exhibition"
+    },
+    {
+      "id": 6,
+      "title": "VC\nMEET\nGREET",
+      "date": "March 14, 2026",
+      "venue": "Conference Room A",
+      "link": "#",
+      "category": "Networking"
+    },
+    {
+      "id": 7,
+      "title": "BUSINESS\nPLAN\nCOMP",
+      "date": "March 14, 2026",
+      "venue": "IIIT Delhi, LHC",
+      "link": "#",
+      "category": "Competition"
+    },
+    {
+      "id": 8,
+      "title": "FOUNDER\nFIRESIDE\nCHAT",
+      "date": "March 15, 2026",
+      "venue": "Main Auditorium",
+      "link": "#",
+      "category": "Talk"
+    },
+    {
+      "id": 9,
+      "title": "IDEATION\nWORK\nSHOP",
+      "date": "March 13, 2026",
+      "venue": "Workshop Hall",
+      "link": "#",
+      "category": "Workshop"
+    },
+    {
+      "id": 10,
+      "title": "PRODUCT\nDEMO\nDAY",
+      "date": "March 15, 2026",
+      "venue": "Exhibition Hall",
+      "link": "#",
+      "category": "Exhibition"
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 import { useGSAP } from "@gsap/react";
 import { useEffect, useRef } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Lenis from "@studio-freight/lenis";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
@@ -11,6 +12,7 @@ import Events from "./pages/events";
 import Speakers from "./pages/speakers";
 import Sponsors from "./pages/sponsors";
 import Zonals from "./pages/zonals";
+import AllEvents from "./pages/allEvents";
 gsap.registerPlugin(ScrollTrigger);
 
 function App() {
@@ -92,16 +94,34 @@ function App() {
     }, []);
 
     return (
-        <>
-            <Navbar ref={navbarRef} />
-            <Hero ref={firstHeroRef} />
-            <About />
-            <Zonals />
-            <Events />
-            <Speakers />
-            <Sponsors />
-            <Petals count={50} />
-        </>
+        <BrowserRouter>
+            <Routes>
+                <Route
+                    path="/"
+                    element={
+                        <>
+                            <Navbar ref={navbarRef} />
+                            <Hero ref={firstHeroRef} />
+                            <About />
+                            <Zonals />
+                            <Events />
+                            <Speakers />
+                            <Sponsors />
+                            <Petals count={50} />
+                        </>
+                    }
+                />
+                <Route
+                    path="/all-events"
+                    element={
+                        <>
+                            <AllEvents />
+                            <Petals count={50} />
+                        </>
+                    }
+                />
+            </Routes>
+        </BrowserRouter>
     );
 }
 
