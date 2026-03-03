@@ -1,0 +1,28 @@
+{
+    "allSpeakers": [
+        {
+            "name": "Vijendra Chauhan",
+            "title": "CEO of Tech Innovations",
+            "bio": "John is a visionary leader in the tech industry, known for his innovative approach to product development.",
+            "img" : "/speaker1.png"
+        },
+        {
+            "name": "Jane Smith",
+            "title": "Founder of Startup X",
+            "bio": "Jane is an entrepreneur who has built a successful startup from the ground up.",
+            "img" : "/speaker1.png"
+        },
+        {
+            "name": "John Doe",
+            "title": "CEO of Tech Innovations",
+            "bio": "John is a visionary leader in the tech industry, known for his innovative approach to product development.",
+            "img" : "https://example.com/john-doe.jpg"
+        },
+        {
+            "name": "Jane Smith",
+            "title": "Founder of Startup X",
+            "bio": "Jane is an entrepreneur who has built a successful startup from the ground up.",
+            "img" : "/speaker1.png"
+        }
+    ]
+}
