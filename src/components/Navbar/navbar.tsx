@@ -41,7 +41,6 @@ const Navbar = ({ heroRef }: NavbarProps) => {
         if (!heroRef.current || !navRef.current) return;
 
         const nav = navRef.current;
-        let scaled = false;
         let hovered = false;
 
         gsap.set(nav, {
@@ -99,7 +98,6 @@ const Navbar = ({ heroRef }: NavbarProps) => {
                     });
                 }
 
-                scaled = progress > 0.05;
             },
         });
 
