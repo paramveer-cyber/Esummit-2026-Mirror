@@ -3,7 +3,6 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { LenisContext } from "../../contexts/LenisContext";
 import { Link, useNavigate } from "react-router-dom";
-
 import branch from "../../assets/branch.webp";
 import gLantern from "../../assets/lantern.webp";
 import flower from "../../assets/flower.webp";
@@ -211,11 +210,9 @@ const Navbar = ({ heroRef }: NavbarProps) => {
             duration: 0.3,
             ease: "power2.out",
         })
-
-
         .to(birdEl, {
             x: -window.innerWidth * 1.5,
-            duration: 1.5,
+            duration: 1.6,
             rotation: -25,
             scale: 0.75,
             opacity: 0,
@@ -223,10 +220,10 @@ const Navbar = ({ heroRef }: NavbarProps) => {
         }, "<")
 
         .to(birdEl, {
-            y: `-=${40 + Math.floor(Math.random() * 10)}`,
-            repeat: 12,
+            y: `-=${20 + Math.floor(Math.random() * 10)}`,
+            repeat: 4,
             yoyo: true,
-            duration: 0.8,
+            duration: 0.4,
             ease: "sine.inOut",
         }, "<");
     };
