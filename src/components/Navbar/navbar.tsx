@@ -29,6 +29,7 @@ interface NavbarProps {
 
 const Navbar = ({ heroRef }: NavbarProps) => {
     const [birdFrame, setBirdFrame] = useState(bird);
+
     const navRef = useRef<HTMLDivElement>(null);
     const birdRef = useRef<HTMLImageElement>(null);
     const navigate = useNavigate();
@@ -38,9 +39,16 @@ const Navbar = ({ heroRef }: NavbarProps) => {
     const scaleDownFactor = 0.4;
 
     useEffect(() => {
+        const img1 = new Image();
+        const img2 = new Image();
+        img1.src = birdUp;
+        img2.src = birdDown;
+    }, []);
+    useEffect(() => {
         if (!heroRef.current || !navRef.current) return;
 
         const nav = navRef.current;
+        let scaled = false;
         let hovered = false;
 
         gsap.set(nav, {
@@ -98,11 +106,52 @@ const Navbar = ({ heroRef }: NavbarProps) => {
                     });
                 }
 
+                scaled = progress > 0.05;
+
+                if (!scaled && hovered) {
+                    hovered = false;
+                    gsap.to(nav, {
+                        scaleX: defaultScale,
+                        scaleY: defaultScale + 0.05,
+                        duration: 0.2,
+                    });
+                }
             },
         });
 
+        const handleMouseEnter = () => {
+            if (!scaled) return;
+
+            hovered = true;
+
+            gsap.to(nav, {
+                scaleX: defaultScale,
+                scaleY: defaultScale + 0.05,
+                duration: 0.3,
+                ease: "back.out(1.7)",
+            });
+        };
+
+        const handleMouseLeave = () => {
+            if (!scaled) return;
+
+            hovered = false;
+
+            gsap.to(nav, {
+                scaleX: scaleDownFactor,
+                scaleY: scaleDownFactor + 0.05,
+                duration: 0.3,
+                ease: "back.out(1.7)",
+            });
+        };
+
+        nav.addEventListener("mouseenter", handleMouseEnter);
+        nav.addEventListener("mouseleave", handleMouseLeave);
+
         return () => {
             scrollTrigger.kill();
+            nav.removeEventListener("mouseenter", handleMouseEnter);
+            nav.removeEventListener("mouseleave", handleMouseLeave);
         };
     }, [heroRef]);
 
@@ -117,60 +166,69 @@ const Navbar = ({ heroRef }: NavbarProps) => {
 
         const birdEl = birdRef.current;
 
-        let flapInterval: number;
         let toggle = false;
+        let lastTime = 0;
+        let animationFrameId: number;
+        const flapDelay = 220;
 
-        const startFlap = () => {
-            flapInterval = window.setInterval(() => {
+        const flapLoop = (time: number) => {
+            if (time - lastTime >= flapDelay) {
                 toggle = !toggle;
                 setBirdFrame(toggle ? birdUp : birdDown);
-            }, 220); 
+                lastTime = time;
+            }
+            animationFrameId = requestAnimationFrame(flapLoop);
+        };
+
+        const startFlap = () => {
+            animationFrameId = requestAnimationFrame(flapLoop);
         };
 
         const stopFlap = () => {
-            clearInterval(flapInterval);
-            setBirdFrame(birdUp); 
+            cancelAnimationFrame(animationFrameId);
+            setBirdFrame(birdUp);
         };
-
-        startFlap();
 
         const tl = gsap.timeline({
             onComplete: () => {
                 stopFlap();
                 navigate("/team");
-                // navigate("/");
             },
         });
+
         tl.to(birdEl, {
             rotation: -10,
             yoyo: true,
             repeat: 6,
-            duration: 0.06,
+            duration: 0.04,
             ease: "power1.inOut",
         })
+        .add(() => {
+            startFlap();
+        })
+        .to(birdEl, {
+            y: -40,
+            duration: 0.3,
+            ease: "power2.out",
+        })
 
-            .to(birdEl, {
-                y: -40,
-                duration: 0.3,
-                ease: "power2.out",
-            })
 
-            .to(birdEl, {
-                x: -window.innerWidth * 1.5,
-                duration: 1.5,
-                rotation: -25,
-                scale: 0.75,
-                opacity: 0,
-                ease: "power2.in",
-            }, "<")
+        .to(birdEl, {
+            x: -window.innerWidth * 1.5,
+            duration: 1.5,
+            rotation: -25,
+            scale: 0.75,
+            opacity: 0,
+            ease: "power2.in",
+        }, "<")
 
-            .to(birdEl, {
-                y: `-=${40 + Math.floor(Math.random()*10)}`,
-                repeat: 12,
-                yoyo: true,
-                duration: 0.8,
-                ease: "sine.inOut",
-            }, "<");
+        .to(birdEl, {
+            y: `-=${40 + Math.floor(Math.random() * 10)}`,
+            repeat: 12,
+            yoyo: true,
+            duration: 0.8,
+            ease: "sine.inOut",
+        }, "<");
     };
 
     return (
