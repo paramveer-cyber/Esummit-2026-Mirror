@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { Link } from "react-router-dom";
@@ -11,6 +11,14 @@ import eventsData from "../data/events.json";
 const AllEvents = () => {
     const containerRef = useRef<HTMLDivElement>(null);
     const eventList = eventsData.allEvents;
+
+    // Scroll to top on mount
+    useEffect(() => {
+        // Immediate scroll to top
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+    }, []);
 
     useGSAP(
         () => {

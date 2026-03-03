@@ -4,7 +4,7 @@ import Lenis from "@studio-freight/lenis";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
 interface LenisContextValue {
-    scrollTo: (target: string | HTMLElement) => void;
+    scrollTo: (target: string | HTMLElement | number) => void;
 }
 
 export const LenisContext = createContext<LenisContextValue>({
@@ -35,7 +35,7 @@ export const LenisProvider = ({ children }: LenisProviderProps) => {
         };
     }, []);
 
-    const scrollTo = (target: string | HTMLElement) => {
+    const scrollTo = (target: string | HTMLElement | number) => {
         if (lenisRef.current) {
             lenisRef.current.scrollTo(target, {
                 duration: 1.5,
