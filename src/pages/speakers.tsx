@@ -10,7 +10,7 @@ import Marquee from "react-fast-marquee";
 interface Speaker {
     name: string;
     title: string;
-    bio: string;
+    company: string;
     img: string;
 }
 
@@ -241,7 +241,7 @@ const Speakers = () => {
                             <div
                                 key={index}
                                 ref={addToCardsRef}
-                                className="shrink-0 w-75 relative cursor-pointer"
+                                className="shrink-0 w-75 relative cursor-pointer scale-90"
                             >
                                 <div className="relative overflow-hidden">
                                     <img
@@ -283,15 +283,20 @@ const Speakers = () => {
                                         />
                                     </div>
 
-                                    <div className="absolute bottom-[25%] left-0 w-full text-center z-40 pointer-events-none px-4">
+                                    <div className="absolute left-0 right-0 bottom-[17.5%] flex flex-col items-center z-40 pointer-events-none">
                                         <p
-                                            className="text-3xl text-[#2d1b2d] font-bold drop-shadow-sm"
+                                            className="text-3xl font-semibold text-[#2d1b2d] leading-tight p-1 tracking-wide"
                                             style={{ fontFamily: "Akumaru, serif" }}
                                         >
                                             {speaker.name}
                                         </p>
-                                        <p className="text-sm text-[#4a3a4a] mt-5">
+
+                                        <p className="text-lg text-[#5a475a] mt-2 font-medium tracking-wide p-1">
                                             {speaker.title}
+                                        </p>
+
+                                        <p className="text-sm text-[#7a687a] mt-1 uppercase tracking-wider opacity-80 p-1">
+                                            {speaker.company}
                                         </p>
                                     </div>
                                 </div>
