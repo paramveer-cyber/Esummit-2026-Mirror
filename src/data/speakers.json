@@ -1,28 +1,22 @@
 {
     "allSpeakers": [
         {
+            "name": "Anshuman Tripathy",
+            "title": "Member of the National Security Advisory Board",
+            "company": "National Security Council",
+            "img" : "/speaker2.png"
+        },
+        {
             "name": "Vijendra Chauhan",
-            "title": "Chief Executive Officer",
-            "company": "Tech Innovations",
+            "title": "UPSC Educator",
+            "company": "Drishti IAS",
             "img" : "/speaker1.png"
         },
         {
-            "name": "Jane Smith",
-            "title": "Founder",
-            "company": "Startup X",
-            "img" : "/speaker1.png"
-        },
-        {
-            "name": "John Doe",
-            "title": "Chief Technical Officer",
-            "company": "Tech Innovations",
-            "img" : "https://example.com/john-doe.jpg"
-        },
-        {
-            "name": "Jane Smith",
-            "title": "Co-Founder",
-            "company": "Startup X",
-            "img" : "/speaker1.png"
+            "name": "Anuj Sahani",
+            "title": "Head of Incubation ",
+            "company": "Krafton",
+            "img" : "/speaker3.png"
         }
     ]
 }
