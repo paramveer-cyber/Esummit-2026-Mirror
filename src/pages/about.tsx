@@ -28,13 +28,11 @@ const About: React.FC = () => {
           </h1>
 
           <div
-            className="text-[25px] leading-10 text-[#5a4a42] max-w-125"
+            className="text-[20px] leading-10 text-[#5a4a42] max-w-125"
             style={{ fontFamily: "Calibri, sans-serif" }}
           >
             <p>
-              PitchCafe Competitive Platforms For Students And Startups To Pitch
-              Ideas To Investors For Funding. PitchCafe Competitive Platforms
-              For Students And Startups To Pitch Ideas To Investors For Funding.
+              E-Summit at IIIT Delhi is a vibrant hub where innovators, founders, investors, and aspiring entrepreneurs come together to share ideas and spark innovation. Through startup pitches, talks, competitions, and networking, it creates a platform for bold ideas to grow and the next generation of entrepreneurs to take shape.
             </p>
           </div>
         </div>

@@ -92,7 +92,7 @@ const Speakers = () => {
                     );
 
                     const visibilityRatio = visibleWidth / cardRect.width;
-                    const isVisible = visibilityRatio > 0.75;
+                    const isVisible = visibilityRatio > 0.65;
 
                     const currentlyOpen = doorState.get(card) ?? false;
 
@@ -137,7 +137,6 @@ const Speakers = () => {
         return () => ctx.revert();
     }, [isDesktop, isActive]);
 
-    // Mobile layout - simple scrollable cards
     if (!isDesktop) {
         return (
             <section
