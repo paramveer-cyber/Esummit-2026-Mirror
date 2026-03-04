@@ -202,32 +202,57 @@ const Navbar = ({ heroRef }: NavbarProps) => {
             duration: 0.04,
             ease: "power1.inOut",
         })
-        .add(() => {
-            startFlap();
-        })
-        .to(birdEl, {
-            y: -40,
-            duration: 0.3,
-            ease: "power2.out",
-        })
-        .to(birdEl, {
-            x: -window.innerWidth * 1.5,
-            duration: 1.6,
-            rotation: -25,
-            scale: 0.75,
-            opacity: 0,
-            ease: "power2.in",
-        }, "<")
+            .add(() => {
+                startFlap();
+            })
+            .to(birdEl, {
+                y: -40,
+                duration: 0.3,
+                ease: "power2.out",
+            })
+            .to(birdEl, {
+                x: -window.innerWidth * 1.5,
+                duration: 1.6,
+                rotation: -25,
+                scale: 0.75,
+                opacity: 0,
+                ease: "power2.in",
+            }, "<")
 
-        .to(birdEl, {
-            y: `-=${20 + Math.floor(Math.random() * 10)}`,
-            repeat: 4,
-            yoyo: true,
-            duration: 0.4,
-            ease: "sine.inOut",
-        }, "<");
+            .to(birdEl, {
+                y: `-=${20 + Math.floor(Math.random() * 10)}`,
+                repeat: 4,
+                yoyo: true,
+                duration: 0.4,
+                ease: "sine.inOut",
+            }, "<");
     };
 
+    useEffect(() => {
+        const interval = setInterval(() => {
+            if (!birdRef.current) return;
+
+            const birdEl = birdRef.current;
+
+            gsap.killTweensOf(birdEl, "rotation");
+            const fidgetTimeline = gsap.timeline()
+            fidgetTimeline.to(birdEl, {
+                rotation: 5,
+                yoyo: true,
+                repeat: 4,
+                duration: 0.08,
+                ease: "power1.inOut",
+            }).to(birdEl, {
+                rotation: -5,
+                yoyo: true,
+                repeat: 4,
+                duration: 0.08,
+                ease: "power1.inOut",
+            });
+        }, 5640);
+
+        return () => clearInterval(interval);
+    }, []);
     return (
         <div ref={navRef} className="navbar">
             <img className="branch" src={branch} alt="branch" />
