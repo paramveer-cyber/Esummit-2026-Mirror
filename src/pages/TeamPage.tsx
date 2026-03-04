@@ -42,6 +42,9 @@ const TeamPage = () => {
 
     useGSAP(
         () => {
+            // Set initial transform state to prevent shift on reload
+            gsap.set(".tori-gate", { xPercent: -50 });
+
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: heroRef.current,
@@ -105,7 +108,7 @@ const TeamPage = () => {
                 <img
                     src={toriGate}
                     alt="Tori Gate"
-                    className="tori-gate absolute bottom-0 left-1/2 -translate-x-1/2 w-auto max-w-full max-h-[85vh] object-contain object-bottom"
+                    className="tori-gate absolute bottom-0 left-1/2 w-auto max-w-full max-h-[85vh] object-contain object-bottom"
                 />
                 <div className="absolute inset-0 flex items-center justify-center">
                     <h2
