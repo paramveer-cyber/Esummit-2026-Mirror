@@ -8,15 +8,11 @@ import Lenis from "@studio-freight/lenis";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Replace these with your actual E-Summit assets
 import bgMain from "../assets/team/background.png";
 import bgLeft from "../assets/team/left-bg.png";
 import bgRight from "../assets/team/right-bg.png";
 import toriGate from "../assets/team/tori-gate.png";
 import teamData from "../data/teamData.json";
-
-// Alternating images applied directly to the data array
-
 
 const TeamPage = () => {
     const heroRef = useRef<HTMLDivElement>(null);
