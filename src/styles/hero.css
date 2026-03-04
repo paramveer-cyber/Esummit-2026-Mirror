@@ -1,0 +1,158 @@
+/* Hero Mobile Responsive Styles */
+
+/* Custom Font */
+@font-face {
+  font-family: 'Akumaru';
+  src: url('../assets/fonts/AKUMARU-PersonalUse.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Background layer - mobile: focus right side, branch smaller and above screen */
+.hero-bg-layer {
+  position: absolute;
+  inset: 0;
+  background-repeat: no-repeat;
+  z-index: 0;
+  background-size: 350%;
+  background-position: 60% 80%;
+  overflow: hidden;
+}
+
+/* Hut layer - mobile: focus left side, hide lanterns by cropping */
+.hero-hut-layer {
+  position: absolute;
+  inset: 0;
+  background-repeat: no-repeat;
+  z-index: 10;
+  background-size: 350%;
+  background-position: 15% 100%;
+  overflow: hidden;
+}
+
+/* Rocks layer */
+.hero-rocks-layer {
+  position: absolute;
+  inset: 0;
+  background-repeat: no-repeat;
+  z-index: 20;
+  background-size: 350%;
+  background-position: 15% 100%;
+  overflow: hidden;
+}
+
+/* Mobile layout container */
+.hero-mobile-layout {
+  position: absolute;
+  inset: 0;
+  z-index: 25;
+  pointer-events: none;
+}
+
+/* Vertical ESUMMIT text */
+.hero-esummit-container {
+  position: absolute;
+  left: 1rem;
+  top: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.hero-esummit-letter {
+  font-family: Akumaru;
+  color: white;
+  font-size: 2.25rem;
+  font-style: italic;
+  filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* 26 container */
+.hero-26-container {
+  position: absolute;
+  right: 1rem;
+  top: 33%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-26-digit {
+  font-family: sans-serif;
+  color: #E8A83C;
+  font-size: 5rem;
+  font-style: italic;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+  -webkit-text-stroke: 1px #c4841e;
+}
+
+.hero-26-digit-bottom {
+  margin-top: -1rem;
+}
+
+/* Mobile Get Your Pass button */
+.hero-mobile-pass-container {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 40;
+  pointer-events: auto;
+}
+
+.hero-mobile-pass-wrapper {
+  position: relative;
+}
+
+.hero-mobile-pass-img {
+  width: 16rem;
+}
+
+.hero-mobile-pass-link {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Akumaru', sans-serif;
+  font-size: 28px;
+  color: #98440C;
+}
+
+/* Desktop content container */
+.hero-desktop-content {
+  display: none !important;
+}
+
+/* Tablet and Desktop (768px and up) */
+@media (min-width: 768px) {
+  /* Background layers reset to cover on desktop */
+  .hero-bg-layer,
+  .hero-hut-layer,
+  .hero-rocks-layer {
+    background-size: cover;
+    background-position: center;
+  }
+
+  /* Hide mobile layout on desktop */
+  .hero-mobile-layout {
+    display: none !important;
+  }
+
+  /* Hide mobile pass button on desktop */
+  .hero-mobile-pass-container {
+    display: none !important;
+  }
+
+  /* Show desktop content */
+  .hero-desktop-content {
+    display: block !important;
+    position: absolute;
+    bottom: 3.75rem;
+    left: 7.5rem;
+    z-index: 30;
+  }
+}

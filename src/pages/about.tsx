@@ -3,6 +3,9 @@ import bg from "../assets/about_background.png";
 import building from "../assets/about_IIITD_asset.png";
 import logo from "../assets/about_logo.png";
 
+const windowWidth = typeof window !== "undefined" ? window.innerWidth : 0;
+
+
 const About: React.FC = () => {
   return (
     <section
@@ -39,12 +42,16 @@ const About: React.FC = () => {
       </div>
 
       {/* TOP LEFT LOGO */}
-      <img
-        src={logo}
-        alt="E-Summit logo"
-        className="absolute top-10 left-27.5 w-50 z-30 object-contain select-none"
-        draggable={false}
-      />
+
+      {windowWidth >= 768 && (
+        <img
+          src={logo}
+          alt="E-Summit logo"
+          className="absolute top-10 left-27.5 w-50 z-30 object-contain select-none"
+          draggable={false}
+        />
+      )
+      }
 
       {/* BUILDING – MID LAYER */}
       <img

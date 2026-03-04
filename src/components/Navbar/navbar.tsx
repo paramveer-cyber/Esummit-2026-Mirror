@@ -9,17 +9,30 @@ import flower from "../../assets/flower.webp";
 import bird from "../../assets/birdie.png";
 import birdUp from "../../assets/birdie_fly_up.png";
 import birdDown from "../../assets/birdie_fly_down.png";
+import passBrushstroke from "../../assets/passBrushstroke.webp";
 
 import "./navbar.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const navItems = [
+// Desktop lantern items (5 lanterns)
+const desktopNavItems = [
     { label: "ABOUT", id: "about" },
     { label: "ZONALS", id: "zonals" },
     { label: "EVENTS", id: "events" },
     { label: "SPEAKERS", id: "speakers" },
     { label: "SPONSORS", id: "sponsors" },
+];
+
+// Mobile menu items (includes HOME and TEAM)
+const mobileNavItems = [
+    { label: "HOME", id: "hero" },
+    { label: "ABOUT", id: "about" },
+    { label: "ZONALS", id: "zonals" },
+    { label: "EVENTS", id: "events" },
+    { label: "SPEAKERS", id: "speakers" },
+    { label: "SPONSORS", id: "sponsors" },
+    { label: "TEAM", id: "team", isRoute: true },
 ];
 
 interface NavbarProps {
@@ -28,6 +41,7 @@ interface NavbarProps {
 
 const Navbar = ({ heroRef }: NavbarProps) => {
     const [birdFrame, setBirdFrame] = useState(bird);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     const navRef = useRef<HTMLDivElement>(null);
     const birdRef = useRef<HTMLImageElement>(null);
@@ -254,33 +268,82 @@ const Navbar = ({ heroRef }: NavbarProps) => {
         return () => clearInterval(interval);
     }, []);
     return (
-        <div ref={navRef} className="navbar">
-            <img className="branch" src={branch} alt="branch" />
+        <>
+            <div ref={navRef} className="navbar">
+                <img className="branch" src={branch} alt="branch" />
 
-            <div className="lanterns">
-                {navItems.map((item, index) => (
-                    <Link
-                        key={item.id}
-                        to={`#${item.id}`}
-                        onClick={(e) => handleNavClick(e, item.id)}
-                        className={`lantern-wrapper l${index + 1}`}
-                    >
-                        <div className={`lantern-chain c${index + 1}`} />
-                        <img className="lantern" src={gLantern} alt={item.label} />
-                        <span className="lantern-label">{item.label}</span>
-                        <img src={flower} alt="flower" className="flower" />
-                    </Link>
-                ))}
+                <div className="lanterns">
+                    {desktopNavItems.map((item, index) => (
+                        <Link
+                            key={item.id}
+                            to={`#${item.id}`}
+                            onClick={(e) => handleNavClick(e, item.id)}
+                            className={`lantern-wrapper l${index + 1}`}
+                        >
+                            <div className={`lantern-chain c${index + 1}`} />
+                            <img className="lantern" src={gLantern} alt={item.label} />
+                            <span className="lantern-label">{item.label}</span>
+                            <img src={flower} alt="flower" className="flower" />
+                        </Link>
+                    ))}
+                </div>
+
+                <img
+                    ref={birdRef}
+                    className="birdie"
+                    src={birdFrame}
+                    alt="bird"
+                    onClick={handleBirdClick}
+                />
+
+                {/* Mobile Menu Lantern - single lantern for mobile */}
+                <div 
+                    className="mobile-menu-lantern lantern-wrapper"
+                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                >
+                    <img src="/menu.png" alt="Menu" className="lantern"/>
+                </div>
             </div>
 
-            <img
-                ref={birdRef}
-                className="birdie"
-                src={birdFrame}
-                alt="bird"
-                onClick={handleBirdClick}
-            />
-        </div>
+            {/* Mobile Menu Overlay - outside navbar to avoid clipping */}
+            {mobileMenuOpen && (
+                <div className="mobile-menu-overlay" onClick={() => setMobileMenuOpen(false)}>
+                    <div className="mobile-menu-content" onClick={(e) => e.stopPropagation()}>
+                        <button className="mobile-menu-close" onClick={() => setMobileMenuOpen(false)}>
+                            ✕
+                        </button>
+                        <nav className="mobile-menu-nav">
+                            {mobileNavItems.map((item) => (
+                                item.isRoute ? (
+                                    <Link
+                                        key={item.id}
+                                        to={`/${item.id}`}
+                                        className="mobile-menu-item"
+                                        onClick={() => setMobileMenuOpen(false)}
+                                    >
+                                        <img src={passBrushstroke} alt="" className="mobile-menu-item-bg" />
+                                        <span className="mobile-menu-item-label">{item.label}</span>
+                                    </Link>
+                                ) : (
+                                    <a
+                                        key={item.id}
+                                        href={`#${item.id}`}
+                                        className="mobile-menu-item"
+                                        onClick={(e) => {
+                                            handleNavClick(e, item.id);
+                                            setMobileMenuOpen(false);
+                                        }}
+                                    >
+                                        <img src={passBrushstroke} alt="" className="mobile-menu-item-bg" />
+                                        <span className="mobile-menu-item-label">{item.label}</span>
+                                    </a>
+                                )
+                            ))}
+                        </nav>
+                    </div>
+                </div>
+            )}
+        </>
     );
 };
 

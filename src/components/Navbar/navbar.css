@@ -3,9 +3,16 @@
     top: 0;
     right: 0;
     width: 100%;
+    height: 600px;
     z-index: 50;
     transform-origin: 100% 0%;
     scale: 0.75 0.8;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.navbar * {
+    pointer-events: auto;
 }
 
 .branch {
@@ -15,6 +22,7 @@
     right: -10px;
     z-index: 50;
     transform-origin: 100% 0%;
+    pointer-events: none;
 }
 
 
@@ -154,4 +162,176 @@
     width: 8.5%;
     z-index: 180;
     cursor: pointer;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 767px) {
+    .navbar {
+        scale: 0.5 0.55;
+        height: 400px;
+    }
+
+    .branch {
+        width: 500px;
+        height: 300px;
+        right: -30px;
+        overflow: hidden;
+    }
+
+    /* Hide all navigation lanterns on mobile */
+    .lanterns {
+        display: none;
+    }
+
+    /* Show single menu lantern on mobile */
+    .mobile-menu-lantern {
+        display: block !important;
+    }
+
+    /* Hide bird on mobile */
+    .birdie {
+        display: none !important;
+    }
+}
+
+/* Mobile menu lantern - hidden on desktop */
+.mobile-menu-lantern {
+    display: none;
+    position: absolute;
+    top: 130px;
+    right:95px;
+    text-decoration: none;
+    width: 117px;
+    height: 184.3px;
+    z-index: 200;
+    transform-origin: 50% 0%;
+    cursor: pointer;
+    pointer-events: auto !important;
+}
+
+.mobile-menu-lantern .lantern {
+    width: 100%;
+    height: 100%;
+    top:-20%;
+    cursor: pointer;
+    pointer-events: auto !important;
+}
+
+.mobile-menu-lantern .lantern-label {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-family: "Akumaru";
+    color: #5B433C;
+    font-size: 18px;
+    font-weight: 400;
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+}
+
+/* Mobile Menu Overlay */
+.mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.mobile-menu-content {
+    background: transparent;
+    padding: 2rem;
+    min-width: 280px;
+    max-width: 90vw;
+    position: relative;
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.mobile-menu-close {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    line-height: 1;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.mobile-menu-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.mobile-menu-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+    min-width: 200px;
+    height: 60px;
+}
+
+.mobile-menu-item-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.mobile-menu-item-label {
+    position: relative;
+    z-index: 1;
+    font-family: "Akumaru", sans-serif;
+    color: #98440C;
+    font-size: 1.25rem;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+.mobile-menu-item:hover,
+.mobile-menu-item:active {
+    transform: scale(1.08);
+}
+
+.mobile-menu-item:hover .mobile-menu-item-bg,
+.mobile-menu-item:active .mobile-menu-item-bg {
+    filter: drop-shadow(0 6px 12px rgba(232, 168, 60, 0.5));
 }
