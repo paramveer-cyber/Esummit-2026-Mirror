@@ -8,28 +8,29 @@ const About: React.FC = () => {
   return (
     <section
       id="about"
-      className="w-full h-screen relative overflow-hidden"
+      className="about-section w-full min-h-screen relative overflow-hidden"
       style={{
         backgroundImage: `url(${bg})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-      <div className="absolute left-[12%] top-[55%] -translate-y-1/2 z-20 flex items-start gap-15">
+      {/* Text Content - Top Left on mobile */}
+      <div className="about-content absolute left-[12%] top-[55%] -translate-y-1/2 z-20 flex items-start gap-15 md:left-[12%] md:top-[55%]">
         {/* Vertical Line */}
-        <div className="w-[3.5px] h-125 bg-[#7b3f00]" />
+        <div className="about-line w-[3.5px] h-125 bg-[#7b3f00]" />
 
         {/* Text Block */}
-        <div className="max-w-135 flex flex-col gap-9.5">
+        <div className="about-text-block max-w-135 flex flex-col gap-9.5">
           <h1
-            className="uppercase text-[100px] leading-[1.1] tracking-[0.05em] text-[#371B2E]"
+            className="about-title uppercase text-[100px] leading-[1.1] tracking-[0.05em] text-[#371B2E]"
             style={{ fontFamily: "Akumaru" }}
           >
             ABOUT THE <br /> FESTIVAL
           </h1>
 
           <div
-            className="text-[20px] leading-10 text-[#5a4a42] max-w-125"
+            className="about-description text-[20px] leading-10 text-[#5a4a42] max-w-125"
             style={{ fontFamily: "Calibri, sans-serif" }}
           >
             <p>
@@ -48,11 +49,11 @@ const About: React.FC = () => {
           draggable={false}
         />
 
-      {/* BUILDING – MID LAYER */}
+      {/* BUILDING – Bottom Right */}
       <img
         src={building}
         alt="building"
-        className="absolute right-0 bottom-[0%] w-[55%] max-w-none z-0 object-contain select-none"
+        className="about-building absolute right-0 bottom-[0%] w-[55%] max-w-none z-0 object-contain select-none"
         draggable={false}
       />
     </section>

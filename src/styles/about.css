@@ -1,5 +1,85 @@
+/* About Page Responsive Styles */
+
+/* Mobile Styles */
 @media (max-width: 767px) {
-    .logo{
+    .logo {
         display: none;
+    }
+
+    .about-section {
+        min-height: 100vh;
+        height: auto;
+        padding: 6rem 1.5rem 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Text content - Top Left with vertical line */
+    .about-content {
+        position: relative;
+        left: 0 !important;
+        top: 0 !important;
+        transform: none !important;
+        padding: 0;
+        flex-direction: row;
+        gap: 1rem;
+        z-index: 20;
+    }
+
+    /* Vertical line accent */
+    .about-line {
+        width: 3px !important;
+        height: auto !important;
+        min-height: 200px;
+        align-self: stretch;
+    }
+
+    .about-text-block {
+        max-width: 70% !important;
+        gap: 1rem;
+    }
+
+    .about-title {
+        font-size: 2rem !important;
+        line-height: 1.1 !important;
+    }
+
+    .about-description {
+        font-size: 0.9rem !important;
+        line-height: 1.6 !important;
+        max-width: 100% !important;
+    }
+
+    /* Building image - Bottom Center */
+    .about-building {
+        position: relative;
+        right: -25px;
+        bottom: auto !important;
+        width: 100% !important;
+        z-index: 10;
+        opacity: 1;
+    }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+    .about-section {
+        padding-top: 5rem;
+    }
+
+    .about-text-block {
+        max-width: 75% !important;
+    }
+
+    .about-title {
+        font-size: 1.75rem !important;
+    }
+
+    .about-description {
+        font-size: 0.85rem !important;
+    }
+
+    .about-building {
+        width: 100% !important;
     }
 }
