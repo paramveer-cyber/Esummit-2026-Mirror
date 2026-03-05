@@ -10,12 +10,7 @@ const Zonals: React.FC = () => {
     >
       {/* Desktop View */}
       <div
-        className="hidden md:block w-full h-full min-h-screen relative"
-        style={{
-          backgroundImage: `url(${bg})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
+        className="hidden md:block w-full h-full min-h-screen relative bg-transparent"
       >
         <img
           src={timeline}

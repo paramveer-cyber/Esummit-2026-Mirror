@@ -80,8 +80,7 @@ const Events = () => {
         <section
             id="events"
             ref={containerRef}
-            className="min-h-screen w-full flex flex-col items-center justify-center py-20 relative overflow-hidden"
-            style={{ backgroundImage: `url(${bg})` }}
+            className="min-h-screen w-full flex flex-col items-center justify-center py-20 relative overflow-hidden bg-transparent"
         >
             <div className="text-center mb-16 md:mb-28 relative z-30">
                 <h2

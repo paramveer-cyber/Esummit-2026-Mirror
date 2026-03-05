@@ -9,10 +9,7 @@ import Navbar from "./components/Navbar/navbar";
 import Petals from "./components/Petals/petals";
 import Hero from "./pages/hero";
 import About from "./pages/about";
-import Events from "./pages/events";
-import Speakers from "./pages/speakers";
-import Sponsors from "./pages/sponsors";
-import Zonals from "./pages/zonals";
+    
 import AllEvents from "./pages/allEvents";
 import Footer from "./pages/footer";
 import TeamPage from "./pages/TeamPage";
@@ -20,6 +17,7 @@ import Loader from "./pages/loader";
 
 import leftDoor from "./assets/leftLoaderPanel.png";
 import rightDoor from "./assets/rightLoaderPanel.png";
+import SharedSection from "./pages/sharedSection";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -35,10 +33,7 @@ function RouterContent({ startTransition }: { startTransition: () => void }) {
                         <Navbar heroRef={heroRef} startTransition={startTransition} />
                         <Hero ref={heroRef} />
                         <About />
-                        <Zonals />
-                        <Events />
-                        <Speakers />
-                        <Sponsors />
+                        <SharedSection />
                         <Petals count={50} />
                         <Footer />
                     </>
