@@ -67,19 +67,17 @@ const Hero = forwardRef<HTMLDivElement>((_, ref) => {
           </div>
         )}
         
-        {windowWidth >= 768 && (
-          <div ref={contentRef} className="hero-desktop-content">
-            <div className="flex items-center justify-center flex-col">
-              <img src={twentySix} alt="26" className="w-lg" />
-              <div className="w-96 flex items-center justify-center relative">
-                <img src={passBrushstroke} alt="" />
-                <a href="/pass" className="absolute inset-0 flex items-center justify-center font-['Akumaru'] text-[43px] text-[#98440C]">
-                  Get Your Pass
-                </a>
-              </div>
+        <div ref={contentRef} className="hero-desktop-content">
+          <div className="flex items-center justify-center flex-col">
+            <img src={twentySix} alt="26" className="w-lg" />
+            <div className="w-96 flex items-center justify-center relative">
+              <img src={passBrushstroke} alt="" />
+              <a href="/pass" className="absolute inset-0 flex items-center justify-center font-['Akumaru'] text-[43px] text-[#98440C]">
+                Get Your Pass
+              </a>
             </div>
           </div>
-        )}
+        </div>
       </section>
       
     </>
