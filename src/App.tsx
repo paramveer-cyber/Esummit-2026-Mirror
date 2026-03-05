@@ -3,13 +3,13 @@ import { BrowserRouter, Routes, Route, useNavigate, useLocation } from "react-ro
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { LenisProvider } from "./contexts/LenisContext";
-import { Analytics } from "@vercel/analytics/react"
+import { Analytics } from "@vercel/analytics/react";
 
 import Navbar from "./components/Navbar/navbar";
 import Petals from "./components/Petals/petals";
 import Hero from "./pages/hero";
 import About from "./pages/about";
-    
+
 import AllEvents from "./pages/allEvents";
 import Footer from "./pages/footer";
 import TeamPage from "./pages/TeamPage";
@@ -76,6 +76,7 @@ function DoorController() {
     const startTransition = async () => {
         await new Promise((r) => setTimeout(r, 200));
         setDoorsVisible(true);
+
         await new Promise<void>((resolve) => {
             const waitForDoors = () => {
                 if (!leftDoorRef.current || !rightDoorRef.current) {
@@ -109,7 +110,6 @@ function DoorController() {
         window.scrollTo(0, 0);
     };
 
-    /* open doors ONLY after route actually changes */
     useEffect(() => {
         if (!waitingForNavigation) return;
 
@@ -163,9 +163,11 @@ function DoorController() {
 }
 
 function App() {
-    const [loaderDone, setLoaderDone] = useState(false);
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+
+    const [loaderDone, setLoaderDone] = useState(isMobile);
     const [pageMounted, setPageMounted] = useState(false);
-    const [assetsReady, setAssetsReady] = useState(false);
+    const [assetsReady, setAssetsReady] = useState(isMobile);
 
     useEffect(() => {
         const t = setTimeout(() => {
@@ -176,6 +178,8 @@ function App() {
     }, []);
 
     useEffect(() => {
+        if (isMobile) return;
+
         const assets = [
             "/assets/events/scroll-handle-top.webp",
             "/assets/events/scroll-handle-bottom.webp",
@@ -228,7 +232,7 @@ function App() {
                 img.src = src;
 
                 if (img.decode) {
-                    img.decode().catch(() => { }).finally(() => resolve());
+                    img.decode().catch(() => {}).finally(() => resolve());
                 } else {
                     img.onload = img.onerror = () => resolve();
                 }
@@ -275,7 +279,8 @@ function App() {
     return (
         <>
             <Analytics />
-            {!loaderDone && <Loader onFinish={handleLoaderFinish} />}
+
+            {!loaderDone && !isMobile && <Loader onFinish={handleLoaderFinish} />}
 
             {pageMounted && (
                 <BrowserRouter>
