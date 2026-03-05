@@ -23,6 +23,7 @@ const Speakers = () => {
 
     const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1024);
     const [isActive, setIsActive] = useState(false);
+    const [featuredIndex, setFeaturedIndex] = useState(0);
 
     const speakers: Speaker[] = speakersData.allSpeakers;
     const duplicatedSpeakers = [...speakers, ...speakers, ...speakers];
@@ -137,63 +138,198 @@ const Speakers = () => {
         return () => ctx.revert();
     }, [isDesktop, isActive]);
 
+    // Auto-rotate featured speaker on mobile
+    useEffect(() => {
+        if (isDesktop || speakers.length === 0) return;
+        
+        const interval = setInterval(() => {
+            setFeaturedIndex((prev) => (prev + 1) % speakers.length);
+        }, 4000);
+        
+        return () => clearInterval(interval);
+    }, [isDesktop, speakers.length]);
+
     if (!isDesktop) {
+        const featuredSpeaker = speakers[featuredIndex];
+        
         return (
             <section
                 id="speakers"
                 ref={containerRef}
-                className="min-h-screen w-full flex flex-col items-center justify-center py-24 relative overflow-hidden"
+                className="min-h-screen w-full flex flex-col items-center py-16 relative overflow-hidden"
                 style={{
                     backgroundImage: `url(${bg})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                 }}
             >
-                <div ref={headingRef} className="text-center mb-16 relative z-10">
+                {/* Header */}
+                <div ref={headingRef} className="text-center mb-8 relative z-10">
                     <h2
-                        className="text-6xl text-[#2d1b2d] drop-shadow-sm select-none"
+                        className="text-5xl text-[#2d1b2d] drop-shadow-sm select-none"
                         style={{ fontFamily: "Akumaru, serif" }}
                     >
                         SPEAKERS
                     </h2>
                 </div>
 
-                <div className="flex gap-6 overflow-x-auto px-4 pb-4 w-full snap-x snap-mandatory">
-                    {speakers.map((speaker, index) => (
-                        <div
-                            key={index}
-                            className="shrink-0 w-70 snap-center relative"
-                        >
-                            <div className="relative overflow-hidden">
-                                <img
-                                    src={subtracted}
-                                    alt=""
-                                    className="w-full h-auto select-none relative z-10 pointer-events-none"
-                                />
+                {/* Featured Speaker Card */}
+                <div 
+                    className="w-[75%] max-w-[300px] relative mx-auto mb-8"
+                    style={{
+                        animation: 'pulseGlow 2s ease-in-out infinite',
+                    }}
+                >
+                    <style>
+                        {`
+                            @keyframes pulseGlow {
+                                0%, 100% { 
+                                    filter: drop-shadow(0 0 8px rgba(139, 69, 19, 0.3));
+                                    transform: scale(1);
+                                }
+                                50% { 
+                                    filter: drop-shadow(0 0 20px rgba(139, 69, 19, 0.5));
+                                    transform: scale(1.02);
+                                }
+                            }
+                            @keyframes fadeSlideIn {
+                                from {
+                                    opacity: 0;
+                                    transform: translateY(20px) scale(0.95);
+                                }
+                                to {
+                                    opacity: 1;
+                                    transform: translateY(0) scale(1);
+                                }
+                            }
+                        `}
+                    </style>
+                    <div 
+                        className="relative overflow-hidden" 
+                        key={featuredIndex}
+                        style={{
+                            animation: 'fadeSlideIn 0.5s ease-out',
+                        }}
+                    >
+                        <img
+                            src={subtracted}
+                            alt=""
+                            className="w-full h-auto select-none relative z-10 pointer-events-none"
+                        />
 
-                                <div className="absolute top-[5%] left-[7%] right-[7%] bottom-[36%] z-0 overflow-hidden">
-                                    <img
-                                        src={speaker.img}
-                                        alt={speaker.name}
-                                        className="w-full h-full object-cover object-top"
-                                        onError={(e) => {
-                                            (e.target as HTMLImageElement).style.opacity = "0";
-                                        }}
-                                    />
-                                </div>
-
-                                <div className="absolute bottom-[8%] left-0 w-full text-center z-40 pointer-events-none px-4">
-                                    <p
-                                        className="text-lg text-[#2d1b2d] font-bold"
-                                        style={{ fontFamily: "Akumaru, serif" }}
-                                    >
-                                        {speaker.name}
-                                    </p>
-                                    <p className="text-sm text-[#4a3a4a]">{speaker.title}</p>
-                                </div>
-                            </div>
+                        <div className="absolute top-[5%] left-[7%] right-[7%] bottom-[36%] z-0 overflow-hidden">
+                            <img
+                                src={featuredSpeaker.img}
+                                alt={featuredSpeaker.name}
+                                className="w-[95%] h-[90%] object-cover object-top transition-opacity duration-500"
+                                onError={(e) => {
+                                    (e.target as HTMLImageElement).style.opacity = "0";
+                                }}
+                            />
                         </div>
-                    ))}
+
+                        <div className="absolute left-0 right-0 bottom-[12%] flex flex-col items-center z-40 pointer-events-none px-2">
+                            <p
+                                className="text-xl font-semibold text-[#2d1b2d] leading-tight tracking-wide text-center"
+                                style={{ fontFamily: "Akumaru, serif" }}
+                            >
+                                {featuredSpeaker.name}
+                            </p>
+                            <p className="text-sm text-[#5a475a] mt-1 font-medium tracking-wide text-center">
+                                {featuredSpeaker.title}
+                            </p>
+                            <p className="text-xs text-[#7a687a] mt-0.5 uppercase tracking-wider opacity-80 text-center">
+                                {featuredSpeaker.company}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Smaller cards marquee */}
+                <div className="w-full overflow-hidden">
+                    <Marquee
+                        direction="left"
+                        speed={20}
+                        gradient={false}
+                        pauseOnClick
+                    >
+                        <div className="flex gap-3 px-2">
+                            {speakers.map((speaker, index) => (
+                                <div
+                                    key={index}
+                                    className={`w-[70px] relative cursor-pointer transition-all duration-500 ${
+                                        index === featuredIndex 
+                                            ? 'scale-125 opacity-100 -translate-y-2 z-10' 
+                                            : 'opacity-70 scale-100'
+                                    }`}
+                                    onClick={() => setFeaturedIndex(index)}
+                                    style={{
+                                        filter: index === featuredIndex ? 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))' : 'none'
+                                    }}
+                                >
+                                    <div className="relative overflow-hidden">
+                                        <img
+                                            src={subtracted}
+                                            alt=""
+                                            className="w-full h-full select-none relative z-10 pointer-events-none"
+                                        />
+
+                                        {/* Speaker image - doors open for highlighted */}
+                                        <div className="absolute top-[15%] left-[5%] right-[5%] bottom-[35%] z-0 overflow-hidden">
+                                            <img
+                                                src={speaker.img}
+                                                alt={speaker.name}
+                                                className="w-[90%] h-[90%] object-cover object-top"
+                                                onError={(e) => {
+                                                    (e.target as HTMLImageElement).style.opacity = "0";
+                                                }}
+                                            />
+                                        </div>
+
+                                        {/* Doors - animate open for highlighted speaker */}
+                                        <div 
+                                            className={`absolute top-[3%] left-[5%] bottom-[35%] z-20 overflow-hidden transition-transform duration-500 ${
+                                                index === featuredIndex ? '-translate-x-full' : 'translate-x-0'
+                                            }`}
+                                            style={{ width: '45%' }}
+                                        >
+                                            <img
+                                                src={left}
+                                                alt=""
+                                                className="w-full h-full object-cover object-right select-none"
+                                            />
+                                        </div>
+                                        <div 
+                                            className={`absolute top-[3%] right-[5%] bottom-[35%] z-20 overflow-hidden transition-transform duration-500 ${
+                                                index === featuredIndex ? 'translate-x-full' : 'translate-x-0'
+                                            }`}
+                                            style={{ width: '45%' }}
+                                        >
+                                            <img
+                                                src={right}
+                                                alt=""
+                                                className="w-full h-full object-cover object-left select-none"
+                                            />
+                                        </div>
+
+                                        <div className="absolute left-0 right-0 bottom-[8%] flex flex-col items-center z-40 pointer-events-none px-0.5">
+                                            <p
+                                                className="text-[5px] font-semibold text-[#2d1b2d] leading-tight tracking-wide text-center truncate w-full"
+                                                style={{ fontFamily: "Akumaru, serif" }}
+                                            >
+                                                {speaker.name.split(' ')[0]}
+                                            </p>
+                                            <p
+                                                className="text-[4px] text-[#5a475a] leading-tight tracking-wide text-center truncate w-full"
+                                            >
+                                                {speaker.title}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </Marquee>
                 </div>
             </section>
         );
