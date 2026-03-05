@@ -3,7 +3,8 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { Link } from "react-router-dom";
 
-import eventsBg from "../assets/events/events-bg.webp";
+import bg from "../assets/zonals_background.webp";
+
 import buttonTexture from "../assets/events/back.webp";
 import EventScroll from "../components/EventScroll/EventScroll";
 import eventsData from "../data/events.json";
@@ -80,7 +81,7 @@ const Events = () => {
             id="events"
             ref={containerRef}
             className="min-h-screen w-full flex flex-col items-center justify-center py-20 relative overflow-hidden"
-            style={{ backgroundImage: `url(${eventsBg})` }}
+            style={{ backgroundImage: `url(${bg})` }}
         >
             <div className="text-center mb-16 md:mb-28 relative z-30">
                 <h2

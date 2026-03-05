@@ -124,7 +124,7 @@ const AllEvents = () => {
                     <img
                         src={buttonTexture}
                         alt="Texture"
-                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[240px] md:w-[320px] max-w-none pointer-events-none z-0 opacity-90 group-hover:opacity-100 transition-opacity"
+                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-60 md:w-[320px] max-w-none pointer-events-none z-0 opacity-90 group-hover:opacity-100 transition-opacity"
                     />
                     <span
                         className="relative z-10 px-10 py-5 text-2xl md:text-3xl text-[#5e2f0d] drop-shadow-md font-bold tracking-wider group-hover:text-[#2A1B1B] transition-colors"

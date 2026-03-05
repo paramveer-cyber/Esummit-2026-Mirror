@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
-import eventsBg from "../assets/events/events-bg.webp";
+import bg from "../assets/zonals_background.webp";
 import speakersData from "../data/speakers.json";
 import left from "../assets/events/window-left-panel.webp";
 import right from "../assets/events/window-right-panel.webp";
@@ -144,7 +144,7 @@ const Speakers = () => {
                 ref={containerRef}
                 className="min-h-screen w-full flex flex-col items-center justify-center py-24 relative overflow-hidden"
                 style={{
-                    backgroundImage: `url(${eventsBg})`,
+                    backgroundImage: `url(${bg})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                 }}
@@ -205,7 +205,7 @@ const Speakers = () => {
             ref={containerRef}
             className="min-h-screen w-full flex flex-col items-center justify-center py-24 relative overflow-hidden"
             style={{
-                backgroundImage: `url(/background.webp)`,
+                backgroundImage: `url(${bg})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
             }}

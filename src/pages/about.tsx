@@ -23,7 +23,7 @@ const About: React.FC = () => {
         {/* Text Block */}
         <div className="about-text-block max-w-135 flex flex-col gap-9.5">
           <h1
-            className="about-title uppercase text-[100px] leading-[1.1] tracking-[0.05em] text-[#371B2E]"
+            className="about-title uppercase text-[84px] leading-[1.1] tracking-[0.05em] text-[#371B2E]"
             style={{ fontFamily: "Akumaru" }}
           >
             ABOUT THE <br /> FESTIVAL
