@@ -1,5 +1,4 @@
 import React from "react";
-import bg from "../assets/zonals_background.webp";
 import timeline from "../assets/zonals_timeline.webp";
 
 const Zonals: React.FC = () => {
@@ -28,14 +27,9 @@ const Zonals: React.FC = () => {
       </div>
 
       {/* Mobile View */}
-      <div className="md:hidden w-full min-h-screen relative flex flex-col pt-8 pl-4"
-          style={{
-            backgroundImage: `url(${bg})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}>
+      <div className="md:hidden w-full min-h-screen relative flex flex-col pt-8 pl-14">
         <h1
-          className="text-[48px] text-[#371B2E] uppercase mb-4 "
+          className="text-[48px] text-[#371B2E] uppercase mb-4"
           style={{ fontFamily: "Akumaru" }}
         >
           ZONALS
@@ -47,6 +41,8 @@ const Zonals: React.FC = () => {
           draggable={false}
         />
       </div>
+
+      <hr />
     </section>
   );
 };

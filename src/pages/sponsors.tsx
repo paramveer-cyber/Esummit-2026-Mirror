@@ -3,7 +3,7 @@ import ease from '../assets/easeMyTripPanel.webp'
 
 function Sponsors() {
   return (
-    <section id="sponsors" className="relative min-h-screen w-full overflow-hidden">
+    <section id="sponsors" className="relative min-h-[80vh] w-full overflow-hidden">
       <div className="relative flex justify-center items-start w-full h-full pt-8 md:pt-12!">
         <h2 className="text-5xl md:text-8xl text-[#371B2E] font-[Akumaru]">
           Sponsors
