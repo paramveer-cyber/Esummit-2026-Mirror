@@ -41,7 +41,7 @@ export default function Loader({ onFinish }: LoaderProps) {
             setTimeout(() => {
                 const v = videoRef.current;
                 if (v) v.remove();
-            }, 1300); 
+            }, 1300);
 
             tl.call(() => {
                 requestAnimationFrame(() => {
@@ -70,7 +70,6 @@ export default function Loader({ onFinish }: LoaderProps) {
     return (
         <div className="fixed inset-0 z-9999 w-screen h-screen overflow-hidden bg-transparent">
 
-            {/* VIDEO */}
             <video
                 ref={videoRef}
                 className="absolute inset-0 w-full h-full object-cover z-10"
@@ -82,7 +81,6 @@ export default function Loader({ onFinish }: LoaderProps) {
                 onTimeUpdate={handleTimeUpdate}
             />
 
-            {/* LEFT DOOR */}
             <img
                 ref={leftRef}
                 src={left}
@@ -90,7 +88,6 @@ export default function Loader({ onFinish }: LoaderProps) {
                 style={{ transform: "translateX(-100%)" }}
             />
 
-            {/* RIGHT DOOR */}
             <img
                 ref={rightRef}
                 src={right}

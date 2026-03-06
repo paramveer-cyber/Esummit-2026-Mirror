@@ -56,7 +56,7 @@ const EventScroll = ({ event, index }: EventScrollProps) => {
 
         if (mobileRef.current) {
             gsap.to(mobileRef.current, {
-                height: "200px",
+                height: "220px",
                 duration: 0.3,
             });
         }
@@ -77,8 +77,8 @@ const EventScroll = ({ event, index }: EventScrollProps) => {
                     backgroundSize: "100% 100%",
                 }}
             >
-                <div className="flex items-center justify-between w-full px-10 ml-8!">
-                    <div className="flex flex-col max-w-45 gap-2">
+                <div className="flex items-center justify-between w-full px-10 ml-12!">
+                    <div className="flex flex-col w-60 gap-2 justify-center">
                         <h3
                             className="text-xl font-light text-[#2A1B1B] leading-tight"
                             style={{ fontFamily: "Akumaru, serif" }}
@@ -86,7 +86,7 @@ const EventScroll = ({ event, index }: EventScrollProps) => {
                             {renderTitle(event.title)}
                         </h3>
 
-                        <div className="flex flex-col mt-3 space-y-1 text-[#5e2f0d] gap-1 text-xs">
+                        <div className="flex flex-col mt-3 space-y-1 text-[#5e2f0d] gap-1 text-sm">
                             <div className="flex items-center gap-2">
                                 <Calendar size={14} />
                                 {event.date}
@@ -96,18 +96,16 @@ const EventScroll = ({ event, index }: EventScrollProps) => {
                                 {event.venue}
                             </div>
                         </div>
+                        <a href={event.link} target="_blank"
+                            className="relative group flex items-center justify-center transition-transform duration-300 hover:scale-105 h-5 scale-110"
+                        >
+                            <img src={buttonTexture} alt="Texture" className="w-27.5" />
+                            <span className="absolute text-xs font-bold tracking-[0.15em] text-[#5e2f0d]">
+                                Go
+                            </span>
+                        </a>
                     </div>
 
-                    <a
-                        href={event.link}
-                        target="_blank"
-                        className="relative group flex items-center justify-center transition-transform duration-300 hover:scale-105 mr-2! scale-110"
-                    >
-                        <img src={buttonTexture} alt="Texture" className="w-27.5" />
-                        <span className="absolute text-xs font-bold tracking-[0.15em] text-[#5e2f0d]">
-                            Go
-                        </span>
-                    </a>
                 </div>
             </div>
 
@@ -162,11 +160,10 @@ const EventScroll = ({ event, index }: EventScrollProps) => {
                             </div>
 
                             <div
-                                className={`flex flex-col items-center gap-4 transition-all duration-500 ease-out overflow-hidden ${
-                                    isExpanded
+                                className={`flex flex-col items-center gap-4 transition-all duration-500 ease-out overflow-hidden ${isExpanded
                                         ? "opacity-100 translate-y-0 max-h-40"
                                         : "opacity-0 -translate-y-3 max-h-0 pointer-events-none"
-                                }`}
+                                    }`}
                             >
                                 {event.desc && (
                                     <p className="text-center text-sm max-w-45">

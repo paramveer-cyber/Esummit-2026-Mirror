@@ -86,9 +86,9 @@
     justify-content: center;
     letter-spacing: 0.115px;
     font-family: "Akumaru";
-    color: #5B433C;
+    color: rgb(68, 54, 49);
     opacity: 0.9;
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 400;
 
     writing-mode: vertical-lr;

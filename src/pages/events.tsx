@@ -14,12 +14,16 @@ const Events = ({ startTransition }: eventsProps) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const eventList = eventsData.featuredEvents;
 
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+
     useGSAP(
         () => {
             const scrolls =
                 gsap.utils.toArray<HTMLElement>(".scroll-container");
 
             const startIdleAnimations = () => {
+                if (isMobile) return;
+
                 scrolls.forEach((scroll, i) => {
                     const randomDuration = 4 + Math.random() * 2;
                     const randomAngle = 0.5 + Math.random() * 1;
@@ -80,7 +84,7 @@ const Events = ({ startTransition }: eventsProps) => {
                 </h2>
             </div>
 
-            <div className="container mx-auto px-4 flex flex-col md:flex-row md:flex-wrap justify-center items-center md:items-start gap-y-20 md:gap-y-24 md:gap-x-12 relative z-30">
+            <div className="container my-5! mx-auto px-4 flex flex-col md:flex-row md:flex-wrap justify-center items-center md:items-start gap-y-10 md:gap-y-12 md:gap-x-12 relative z-30">
                 {eventList.map((event, index) => (
                     <EventScroll key={event.id} index={index} event={event} />
                 ))}

@@ -49,7 +49,7 @@ const Navbar = ({ heroRef, startTransition }: NavbarProps) => {
     const { scrollTo } = useContext(LenisContext);
 
     const defaultScale = 0.75;
-    const scaleDownFactor = 0.4;
+    const scaleDownFactor = 0.425;
 
     /* preload bird frames */
     useEffect(() => {

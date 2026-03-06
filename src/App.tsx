@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route, useNavigate, useLocation , Navigate} from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate, useLocation, Navigate } from "react-router-dom";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { LenisProvider } from "./contexts/LenisContext";
@@ -20,6 +20,29 @@ import rightDoor from "./assets/rightLoaderPanel.png";
 import SharedSection from "./pages/sharedSection";
 
 gsap.registerPlugin(ScrollTrigger);
+
+const LOADER_KEY = "site_loader_played";
+
+function shouldSkipLoader() {
+    if (typeof window === "undefined") return false;
+
+    const stored = localStorage.getItem(LOADER_KEY);
+    if (!stored) return false;
+
+    try {
+        const { time } = JSON.parse(stored);
+        const THREE_HOURS = 3 * 60 * 60 * 1000;
+
+        if (Date.now() - time < THREE_HOURS) {
+            return true;
+        }
+
+        localStorage.removeItem(LOADER_KEY);
+        return false;
+    } catch {
+        return false;
+    }
+}
 
 function RouterContent({ startTransition }: { startTransition: (targetRoute: string) => void }) {
     const heroRef = useRef<HTMLDivElement | null>(null);
@@ -59,8 +82,8 @@ function RouterContent({ startTransition }: { startTransition: (targetRoute: str
                     </>
                 }
             />
-            <Route path="*" element={<Navigate to="/" replace />} />
 
+            <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
     );
 }
@@ -167,25 +190,26 @@ function DoorController() {
 function App() {
     const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
-    const [loaderDone, setLoaderDone] = useState(isMobile);
+    const skipLoader = shouldSkipLoader();
+
+    const [loaderDone, setLoaderDone] = useState(isMobile || skipLoader);
     const [pageMounted, setPageMounted] = useState(false);
     const [assetsReady, setAssetsReady] = useState(isMobile);
 
     useEffect(() => {
-        if (isMobile){
+        if (isMobile || skipLoader) {
             setPageMounted(true);
-        }
-        else{
+        } else {
             const t = setTimeout(() => {
                 setPageMounted(true);
             }, 4650);
-    
+
             return () => clearTimeout(t);
         }
     }, []);
 
     useEffect(() => {
-        if (isMobile) return;
+        if (isMobile || skipLoader) return;
 
         const assets = [
             "/assets/events/scroll-handle-top.webp",
@@ -263,6 +287,11 @@ function App() {
     }, [loaderDone]);
 
     const handleLoaderFinish = () => {
+        localStorage.setItem(
+            LOADER_KEY,
+            JSON.stringify({ time: Date.now() })
+        );
+
         if (assetsReady) {
             setLoaderDone(true);
         } else {
@@ -287,7 +316,9 @@ function App() {
         <>
             <Analytics />
 
-            {!loaderDone && !isMobile && <Loader onFinish={handleLoaderFinish} />}
+            {!loaderDone && !isMobile && !skipLoader && (
+                <Loader onFinish={handleLoaderFinish} />
+            )}
 
             {pageMounted && (
                 <BrowserRouter>

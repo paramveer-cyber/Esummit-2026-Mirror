@@ -4,7 +4,7 @@ import { useGSAP } from "@gsap/react";
 import passBrushstroke from "../assets/passBrushstroke.webp";
 import { ArrowLeft } from "lucide-react";
 
-import eventsBg from "../assets/events/events-bg.png";
+import bg from "../assets/zonals_background.webp";
 import buttonTexture from "../assets/events/back.png";
 import EventScroll from "../components/EventScroll/EventScroll";
 import eventsData from "../data/events.json";
@@ -16,6 +16,8 @@ interface allEventsProps {
 const AllEvents = ({ startTransition }: allEventsProps) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const eventList = eventsData.allEvents;
+
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
     // Scroll to top on mount
     useEffect(() => {
@@ -31,6 +33,8 @@ const AllEvents = ({ startTransition }: allEventsProps) => {
                 gsap.utils.toArray<HTMLElement>(".scroll-container");
 
             const startIdleAnimations = () => {
+                if (isMobile) return;
+
                 scrolls.forEach((scroll, i) => {
                     const randomDuration = 4 + Math.random() * 2;
                     const randomAngle = 0.5 + Math.random() * 1;
@@ -91,13 +95,16 @@ const AllEvents = ({ startTransition }: allEventsProps) => {
         <section
             ref={containerRef}
             className="min-h-screen w-full flex flex-col items-center py-20 relative overflow-hidden"
-            style={{
-                backgroundImage: `url(${eventsBg})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                backgroundAttachment: "fixed",
-            }}
         >
+            <div
+                className="fixed inset-0 -z-10"
+                style={{
+                    backgroundImage: `url(${bg})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    backgroundRepeat: "no-repeat",
+                }}
+            />
             <div
                 onClick={()=>{startTransition("/")}}
                 className="fixed w-45 top-6 left-12 z-9997 flex items-center gap-2 px-4 py-2 overflow-hidden scale-150 cursor-pointer"
@@ -109,14 +116,11 @@ const AllEvents = ({ startTransition }: allEventsProps) => {
                 />
                 <div className="content flex items-center justify-center gap-2 mx-6!">
                     <ArrowLeft size={18} className="text-[#9c4308] relative z-10" />
-                    <span className="font-semibold tracking-wide relative z-10 font-['Akumaru'] text-[25px] text-[#9c4308]"
-                        // style={
-                        //      { textShadow: "-1px -1px 0 #452007, 1px -1px 0 #452007, -1px 1px 0 #452007, 1px 1px 0 #452007"}
-                        // }
-                    >Home</span>
+                    <span className="font-semibold tracking-wide relative z-10 font-['Akumaru'] text-[25px] text-[#9c4308]">
+                    Home</span>
                 </div>
             </div>
-            {/* Header */}
+
             <div className="text-center mb-16 md:mb-24 relative z-30 pt-10">
                 <h2
                     className="text-5xl md:text-7xl lg:text-8xl text-[#2d1b2d] drop-shadow-sm select-none"
@@ -131,14 +135,12 @@ const AllEvents = ({ startTransition }: allEventsProps) => {
                 </p>
             </div>
 
-            {/* Events Grid */}
             <div className="container mx-auto px-4 flex flex-wrap justify-center items-start gap-x-6 lg:gap-x-10 gap-y-20 relative z-30">
                 {eventList.map((event, index) => (
                     <EventScroll key={event.id} index={index} event={event} />
                 ))}
             </div>
 
-            {/* Back to Home Button */}
             <div className="w-full mt-32 md:mt-40 relative z-30 flex items-center justify-center pb-10">
                 <img
                     src={buttonTexture}

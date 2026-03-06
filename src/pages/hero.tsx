@@ -17,6 +17,7 @@ const Hero = forwardRef<HTMLDivElement>((_, ref) => {
   const hutRef = useRef<HTMLDivElement>(null);
   const transitionRef = useRef<HTMLDivElement>(null);
   const rocksRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -35,6 +36,7 @@ const Hero = forwardRef<HTMLDivElement>((_, ref) => {
         .to(hutRef.current, { y: -50, ease: "power3.out" }, 0)
         .to(transitionRef.current, { y: -150, ease: "power4.out" }, 0)
         .to(rocksRef.current, { y: -150, ease: "power4.out" }, 0)
+        .to(buttonRef.current, { y: -150, ease: "power4.out" }, 0)
         .to(contentRef.current, { scale: 0, duration: 0.2 }, 0);
     });
 
@@ -57,17 +59,15 @@ const Hero = forwardRef<HTMLDivElement>((_, ref) => {
         )}
         
         {windowWidth < 768 && (
-          <div className="hero-mobile-pass-container">
-            <div className="hero-mobile-pass-wrapper">
-              <img src={passBrushstroke} alt="" className="hero-mobile-pass-img" />
-              <a href="/pass" className="hero-mobile-pass-link">
-                Get Your Pass
-              </a>
-            </div>
+          <div className="hero-mobile-pass-container w-full flex justify-center items-center" ref={buttonRef}>
+            <img src={passBrushstroke} alt="" className="hero-mobile-pass-img scale-125" />
+            <a href="/pass" className="hero-mobile-pass-link scale-125">
+              Get Your Pass
+            </a>
           </div>
         )}
         
-        <div ref={contentRef} className="hero-desktop-content">
+        {windowWidth >= 768 && (<div ref={contentRef} className="hero-desktop-content">
           <div className="flex items-center justify-center flex-col">
             <img src={twentySix} alt="26" className="w-lg" />
             <div className="w-96 flex items-center justify-center relative">
@@ -77,7 +77,7 @@ const Hero = forwardRef<HTMLDivElement>((_, ref) => {
               </a>
             </div>
           </div>
-        </div>
+        </div>)}
       </section>
       
     </>
