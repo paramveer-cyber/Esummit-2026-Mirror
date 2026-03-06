@@ -67,18 +67,23 @@
 
 .lantern {
     width: 100%;
-    position: inherit;
+    position: absolute;
     height: 100%;
 }
 
 .lantern-label {
     position: absolute;
     left: 50%;
+    line-height: 1;
     top: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-55%, -50%);
     transform-origin: center;
-    width: 40px;
-    max-height: 140px;
+    width: 100%;
+    height: 100%;
+    /* border: 1px red solid; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
     letter-spacing: 0.125px;
     font-family: "Akumaru";
     color: #5B433C;
@@ -110,7 +115,7 @@
 
 .lantern-wrapper:hover .lantern-label {
     opacity: 1;
-    transform: translate(-70%, -50%);
+    transform: translate(-65%, -50%);
 }
 
 .lantern-wrapper:hover .flower {
@@ -215,7 +220,7 @@
     display: none;
     position: absolute;
     top: 130px;
-    right:95px;
+    right: 95px;
     text-decoration: none;
     width: 117px;
     height: 184.3px;
@@ -228,7 +233,7 @@
 .mobile-menu-lantern .lantern {
     width: 100%;
     height: 100%;
-    top:-20%;
+    top: -20%;
     cursor: pointer;
     pointer-events: auto !important;
 }
@@ -266,6 +271,7 @@
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -285,6 +291,7 @@
         transform: translateY(30px);
         opacity: 0;
     }
+
     to {
         transform: translateY(0);
         opacity: 1;

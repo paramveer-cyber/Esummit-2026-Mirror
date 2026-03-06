@@ -71,14 +71,14 @@ const EventScroll = ({ event, index }: EventScrollProps) => {
 
             <div
                 ref={mobileRef}
-                className="block md:hidden relative w-[90%] h-[200px] flex items-center justify-center"
+                className="md:hidden relative w-[90%] h-50 flex items-center justify-center"
                 style={{
                     backgroundImage: `url(${mobileScroll})`,
                     backgroundSize: "100% 100%",
                 }}
             >
                 <div className="flex items-center justify-between w-full px-10 ml-8!">
-                    <div className="flex flex-col max-w-[180px] gap-2">
+                    <div className="flex flex-col max-w-45 gap-2">
                         <h3
                             className="text-xl font-light text-[#2A1B1B] leading-tight"
                             style={{ fontFamily: "Akumaru, serif" }}
@@ -103,7 +103,7 @@ const EventScroll = ({ event, index }: EventScrollProps) => {
                         target="_blank"
                         className="relative group flex items-center justify-center transition-transform duration-300 hover:scale-105 mr-2! scale-110"
                     >
-                        <img src={buttonTexture} alt="Texture" className="w-[110px]" />
+                        <img src={buttonTexture} alt="Texture" className="w-27.5" />
                         <span className="absolute text-xs font-bold tracking-[0.15em] text-[#5e2f0d]">
                             Go
                         </span>
@@ -166,7 +166,7 @@ const EventScroll = ({ event, index }: EventScrollProps) => {
                                     {event.desc && (
                                         <p
                                             ref={detailsRef}
-                                            className="text-center text-sm max-w-[180px]"
+                                            className="text-center text-sm max-w-45"
                                         >
                                             {event.desc}
                                         </p>
