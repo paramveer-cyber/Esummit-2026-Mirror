@@ -20,7 +20,7 @@ export default function Loader({ onFinish }: LoaderProps) {
         const v = videoRef.current;
         if (!v || triggered.current) return;
 
-        if (v.duration - v.currentTime < 3.5) {
+        if (v.duration - v.currentTime < 3.75) {
             triggered.current = true;
 
             const tl = gsap.timeline();

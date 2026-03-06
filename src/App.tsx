@@ -176,7 +176,7 @@ function App() {
         else{
             const t = setTimeout(() => {
                 setPageMounted(true);
-            }, 6250);
+            }, 4650);
     
             return () => clearTimeout(t);
         }

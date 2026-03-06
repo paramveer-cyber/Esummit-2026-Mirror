@@ -74,13 +74,13 @@ const Navbar = ({ heroRef, startTransition }: NavbarProps) => {
             transformOrigin: "100% 0%",
         });
 
-        // gsap.to(nav, {
-        //     rotation: 1,
-        //     duration: 2.5,
-        //     ease: "sine.inOut",
-        //     repeat: -1,
-        //     yoyo: true,
-        // });
+        gsap.to(nav, {
+            rotation: 1,
+            duration: 2.5,
+            ease: "sine.inOut",
+            repeat: -1,
+            yoyo: true,
+        });
 
         const lanterns = nav.querySelectorAll(".lantern-wrapper");
 
@@ -146,8 +146,7 @@ const Navbar = ({ heroRef, startTransition }: NavbarProps) => {
                  scaleX: defaultScale,
                 scaleY: defaultScale + 0.05,
                 duration: 0.3,
-                ease: "power2.out",
-                overwrite: "auto",
+                ease: "back.out(1.7)",
             })
         }
         const onMouseLeave = ()=>{
@@ -157,8 +156,7 @@ const Navbar = ({ heroRef, startTransition }: NavbarProps) => {
                 scaleX: scaleDownFactor,
                 scaleY: scaleDownFactor + 0.05,
                 duration: 0.3,
-                ease: "power2.out",
-                overwrite: "auto",
+                ease: "back.out(1.7)",
             })
         }
 

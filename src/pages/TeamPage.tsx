@@ -165,12 +165,12 @@ const TeamPage = ({ startTransition }: teamProps) => {
             <section className="relative z-10 w-full -my-96! px-4 sm:px-6 md:px-8 flex justify-center">
                 <div
                     ref={gridRef}
-                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-x-2 lg:gap-x-2 gap-y-12 lg:gap-y-20 place-items-center w-[80vw] scale-50 max-w-[1400px]"
+                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-x-2 lg:gap-x-2 gap-y-12 lg:gap-y-20 place-items-center w-[80vw] scale-50 max-w-350"
                 >
                     {teamData.team.map((member) => (
                         <motion.div
                             key={member.id}
-                            className="relative w-full max-w-[320px] sm:max-w-[360px] aspect-[3/4] bg-[#F9EAE8] shadow-2xl rounded-sm overflow-hidden cursor-pointer group"
+                            className="relative w-full max-w-[320px] sm:max-w-90 aspect-3/4 bg-[#F9EAE8] shadow-2xl rounded-sm overflow-hidden cursor-pointer group"
                             whileHover="hover"
                             initial="initial"
                             variants={{
@@ -225,7 +225,7 @@ const TeamPage = ({ startTransition }: teamProps) => {
 
                             <div className="absolute top-6 right-4 sm:top-8 sm:right-6 bottom-6 sm:bottom-8 z-30 pointer-events-none flex justify-end">
                                 <h3
-                                    className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-[0.1em] sm:tracking-[0.15em] text-slate-900"
+                                    className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-widest sm:tracking-[0.15em] text-slate-900"
                                     style={{
                                         writingMode: "vertical-rl",
                                         fontFamily: "Akumaru, serif",
@@ -237,7 +237,7 @@ const TeamPage = ({ startTransition }: teamProps) => {
                                 </h3>
                             </div>
 
-                            <div className="absolute bottom-6 right-4 sm:bottom-8 sm:right-6 z-20 w-8 h-8 sm:w-10 sm:h-10 border-2 border-rose-500 text-rose-600 flex items-center justify-center rounded-sm opacity-60 rotate-[15deg]">
+                            <div className="absolute bottom-6 right-4 sm:bottom-8 sm:right-6 z-20 w-8 h-8 sm:w-10 sm:h-10 border-2 border-rose-500 text-rose-600 flex items-center justify-center rounded-sm opacity-60 rotate-15">
                                 <span
                                     className="text-[10px] sm:text-xs font-bold"
                                     style={{ writingMode: "vertical-rl" }}
@@ -261,14 +261,14 @@ const TeamPage = ({ startTransition }: teamProps) => {
                                             href="#"
                                             className="w-8 h-8 sm:w-10 sm:h-10 bg-white/70 backdrop-blur-md rounded-full shadow-lg flex items-center justify-center text-slate-800 hover:text-rose-600 hover:scale-110 transition-all"
                                         >
-                                            <Icon size={16} className="sm:w-[18px] sm:h-[18px]" />
+                                            <Icon size={16} className="sm:w-4.5 sm:h-4.5" />
                                         </a>
                                     ),
                                 )}
                             </motion.div>
 
                             <motion.div
-                                className="absolute inset-0 z-40 pointer-events-none bg-gradient-to-tr from-transparent via-white/40 to-transparent w-[200%] h-[200%] -top-[50%] -left-[50%] rotate-45"
+                                className="absolute inset-0 z-40 pointer-events-none bg-linear-to-tr from-transparent via-white/40 to-transparent w-[200%] h-[200%] -top-[50%] -left-[50%] rotate-45"
                                 variants={{
                                     initial: { x: "-100%" },
                                     hover: { x: "100%" },
@@ -281,7 +281,7 @@ const TeamPage = ({ startTransition }: teamProps) => {
                         </motion.div>
                     ))}
                     {Array.from({ length: 3 }).map((_, i) => (
-                        <div key={`dummy-${i}`} className="w-full max-w-[320px] sm:max-w-[360px] aspect-[3/1] opacity-0 pointer-events-none" />
+                        <div key={`dummy-${i}`} className="w-full max-w-[320px] sm:max-w-90 aspect-3/1 opacity-0 pointer-events-none" />
                     ))}
                 </div>
             </section>
