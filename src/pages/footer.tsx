@@ -121,10 +121,28 @@ const Footer = () => {
                     <p className="text-[#8a7a72] text-base">
                         © 2026 E-Summit IIITD. All rights reserved.
                     </p>
-                    <p className="text-[#8a7a72] text-base flex items-center gap-2">
-                        Made with <span className="text-[#e488b0] animate-pulse">❤</span> by{" "}
-                        <span className="text-[#d4a574]" style={{ fontFamily: "Akumaru" }}>WebDev Team</span>
-                    </p>
+                    <div className="relative group">
+                        {/* Glow effect background */}
+                        <div className="absolute -inset-2 bg-gradient-to-r from-[#e488b0]/20 via-[#d4a574]/20 to-[#e488b0]/20 rounded-lg blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        <div className="relative flex flex-col sm:flex-row items-center gap-2 sm:gap-4 px-4 py-2">
+                            <span 
+                                className="text-transparent bg-clip-text bg-gradient-to-r from-[#e488b0] via-[#d4a574] to-[#e488b0] text-base sm:text-lg font-medium tracking-wide animate-pulse"
+                                style={{ 
+                                    fontFamily: "Akumaru",
+                                    textShadow: "0 0 20px rgba(228, 136, 176, 0.4), 0 0 40px rgba(212, 165, 116, 0.2)"
+                                }}
+                            >
+                                領域展開: 永久桜吹雪
+                            </span>
+                            <span className="text-[#7b3f00]/60 hidden sm:block">✦</span>
+                            <span 
+                                className="text-[#d4a574]/80 text-sm sm:text-base italic tracking-wider"
+                                style={{ textShadow: "0 0 10px rgba(212, 165, 116, 0.3)" }}
+                            >
+                                Domain Expansion: Eternal Sakura Storm
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </footer>
