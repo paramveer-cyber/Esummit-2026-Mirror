@@ -105,7 +105,7 @@ const TeamPage = () => {
     );
 
     return (
-        <section className="relative w-[100vw] min-h-screen bg-[#0a0a0a] overflow-x-hidden">
+        <section className="relative w-full min-h-screen bg-[#0a0a0a] overflow-x-hidden">
             {/* LAYER 0: Fixed Main Background */}
             <div
                 className="fixed inset-0 z-0 bg-cover bg-center pointer-events-none"

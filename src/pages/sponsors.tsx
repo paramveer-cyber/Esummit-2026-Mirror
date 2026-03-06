@@ -9,13 +9,13 @@ import ease from '../assets/easeMyTripPanel.webp'
 
 function Sponsors() {
   return (
-    <section id="sponsors" className="relative min-h-screen w-full">
-      <div className="relative flex justify-center items-start w-full h-full pt-12! pr-50!">
+    <section id="sponsors" className="relative min-h-screen w-full overflow-x-hidden">
+      <div className="relative flex justify-center items-start w-full h-full pt-12!">
         <h2 className="text-8xl text-[#371B2E] font-[Akumaru]">
           Sponsors
         </h2>
       </div>
-      <div className="marquee-div absolute flex left-0 top-50 justify-center items-center inset-0 z-40 h-[80vh] w-full scale-90 gap-5">
+      <div className="marquee-div absolute flex left-0 top-50 justify-center items-center inset-0 z-40 h-[80vh] w-full scale-90 gap-5 overflow-hidden">
         <img className='rounded-4xl' src={unstop} width={538} height={336} alt="" />
         <img className='rounded-4xl' src={ease} width={538} height={336} alt="" />
         {/* <Marquee direction="right"  speed={60} pauseOnHover gradient={false} autoFill>

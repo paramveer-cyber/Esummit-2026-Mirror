@@ -8,16 +8,23 @@
 * {
     margin: 0;
     box-sizing: border-box;
-    overflow: hidden;
 }
 
 html {
     overflow-x: hidden;
+    overflow-y: auto;
 }
 
 body {
     overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     background-image: url("/background.webp");
+}
+
+#root {
+    overflow-x: hidden;
+    max-width: 100%;
 }
 
 img {

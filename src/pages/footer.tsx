@@ -17,11 +17,11 @@ const Footer = () => {
     ];
 
     return (
-        <footer className="relative overflow-hidden py-12.5 rounded-t-xl" style={{ background: "linear-gradient(to bottom, #2a1a1f 0%, #1a0f12 100%)" }}>
+        <footer className="relative overflow-hidden py-12.5 rounded-t-xl max-w-full" style={{ background: "linear-gradient(to bottom, #2a1a1f 0%, #1a0f12 100%)" }}>
             {/* Decorative top border */}
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#e488b0] to-transparent opacity-60" />
 
-            <div className="relative w-full px-6 md:px-12 lg:px-16 py-4">
+            <div className="relative w-full max-w-full px-6 md:px-12 lg:px-16 py-4 overflow-hidden">
                 {/* Main Content - Four Column Layout */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 items-start">
                     

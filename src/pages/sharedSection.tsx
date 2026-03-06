@@ -7,7 +7,7 @@ import bg from "../assets/zonals_background.webp";
 
 export default function SharedSection() {
     return (
-        <div className="relative">
+        <div className="relative overflow-x-hidden">
             <div
                 className="fixed inset-0 -z-10"
                 style={{
