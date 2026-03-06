@@ -170,11 +170,16 @@ function App() {
     const [assetsReady, setAssetsReady] = useState(isMobile);
 
     useEffect(() => {
-        const t = setTimeout(() => {
+        if (isMobile){
             setPageMounted(true);
-        }, 1000);
-
-        return () => clearTimeout(t);
+        }
+        else{
+            const t = setTimeout(() => {
+                setPageMounted(true);
+            }, 6250);
+    
+            return () => clearTimeout(t);
+        }
     }, []);
 
     useEffect(() => {

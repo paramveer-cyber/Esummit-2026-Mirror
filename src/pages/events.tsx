@@ -28,7 +28,6 @@ const Events = () => {
                         repeat: -1,
                         delay: i * 0.2,
                     });
-                {/* Creative Touch: A giant, faint number in the background */}
 
                     gsap.to(scroll, {
                         rotation: -randomAngle,
@@ -88,7 +87,8 @@ const Events = () => {
                 </h2>
             </div>
 
-            <div className="container mx-auto px-4 flex flex-wrap justify-center items-start gap-x-8 lg:gap-x-12 gap-y-24 relative z-30">
+            {/* only layout change here */}
+            <div className="container mx-auto px-4 flex flex-col md:flex-row md:flex-wrap justify-center items-center md:items-start gap-y-20 md:gap-y-24 md:gap-x-12 relative z-30">
                 {eventList.map((event, index) => (
                     <EventScroll key={event.id} index={index} event={event} />
                 ))}

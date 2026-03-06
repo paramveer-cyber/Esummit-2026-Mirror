@@ -365,7 +365,7 @@ const Speakers = () => {
                             <div
                                 key={index}
                                 ref={addToCardsRef}
-                                className="shrink-0 w-75 relative cursor-pointer scale-90"
+                                className="shrink-0 w-75 relative cursor-pointer scale-95"
                             >
                                 <div className="relative overflow-hidden">
                                     <img
@@ -409,7 +409,7 @@ const Speakers = () => {
 
                                     <div className="absolute left-0 right-0 bottom-[17.5%] flex flex-col items-center z-40 pointer-events-none">
                                         <p
-                                            className="text-3xl font-semibold text-[#2d1b2d] leading-tight p-1 tracking-wide"
+                                            className="text-3xl font-medium text-[#2d1b2d] leading-tight p-1 tracking-wide"
                                             style={{ fontFamily: "Akumaru, serif" }}
                                         >
                                             {speaker.name}
