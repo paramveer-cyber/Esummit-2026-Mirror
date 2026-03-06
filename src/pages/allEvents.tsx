@@ -5,7 +5,6 @@ import passBrushstroke from "../assets/passBrushstroke.webp";
 import { ArrowLeft } from "lucide-react";
 
 import bg from "../assets/zonals_background.webp";
-import buttonTexture from "../assets/events/back.png";
 import EventScroll from "../components/EventScroll/EventScroll";
 import eventsData from "../data/events.json";
 
@@ -139,21 +138,6 @@ const AllEvents = ({ startTransition }: allEventsProps) => {
                 {eventList.map((event, index) => (
                     <EventScroll key={event.id} index={index} event={event} />
                 ))}
-            </div>
-
-            <div className="w-full mt-32 md:mt-40 relative z-30 flex items-center justify-center pb-10">
-                <img
-                    src={buttonTexture}
-                    alt="Texture"
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-60 md:w-[320px] max-w-none pointer-events-none z-0 opacity-90 group-hover:opacity-100 transition-opacity"
-                />
-                <span
-                    className="relative z-10 px-10 py-5 text-2xl md:text-3xl text-[#5e2f0d] drop-shadow-md font-bold tracking-wider group-hover:text-[#2A1B1B] transition-colors"
-                    style={{ fontFamily: "Akumaru, serif" }}
-                    onClick={()=>startTransition("/")}
-                >
-                    Back Home
-                </span>
             </div>
         </section>
     );
