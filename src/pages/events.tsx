@@ -57,17 +57,6 @@ const Events = () => {
                 stagger: 0.15,
                 ease: "power2.out",
             });
-
-            tl.to(
-                ".scroll-body",
-                {
-                    height: "280px",
-                    duration: 1.5,
-                    ease: "elastic.out(1, 0.5)",
-                    stagger: 0.2,
-                },
-                "-=0.3",
-            );
         },
         { scope: containerRef },
     );
@@ -87,7 +76,6 @@ const Events = () => {
                 </h2>
             </div>
 
-            {/* only layout change here */}
             <div className="container mx-auto px-4 flex flex-col md:flex-row md:flex-wrap justify-center items-center md:items-start gap-y-20 md:gap-y-24 md:gap-x-12 relative z-30">
                 {eventList.map((event, index) => (
                     <EventScroll key={event.id} index={index} event={event} />

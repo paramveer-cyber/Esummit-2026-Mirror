@@ -40,20 +40,18 @@ const EventScroll = ({ event, index }: EventScrollProps) => {
     useEffect(() => {
         if (!bodyRef.current) return;
 
-        if (bodyRef.current.style.height !== "0px") {
-            gsap.to(bodyRef.current, {
-                height: isExpanded ? "340px" : "280px",
-                duration: 0.8,
-                ease: "power2.inOut",
-            });
+        gsap.to(bodyRef.current, {
+            height: isExpanded ? "340px" : "280px",
+            duration: 0.8,
+            ease: "power2.inOut",
+        });
 
-            if (isExpanded && detailsRef.current) {
-                gsap.fromTo(
-                    detailsRef.current,
-                    { opacity: 0, y: -10 },
-                    { opacity: 1, y: 0, duration: 0.4, delay: 0.3 }
-                );
-            }
+        if (isExpanded && detailsRef.current) {
+            gsap.fromTo(
+                detailsRef.current,
+                { opacity: 0, y: -10 },
+                { opacity: 1, y: 0, duration: 0.4, delay: 0.3 }
+            );
         }
 
         if (mobileRef.current) {
@@ -69,7 +67,7 @@ const EventScroll = ({ event, index }: EventScrollProps) => {
             className="scroll-container relative flex flex-col items-center w-full md:w-72 lg:w-80 opacity-0 origin-top z-30"
             data-index={index}
         >
-            {/* ---------- MOBILE SCROLL ---------- */}
+            {/* MOBILE */}
 
             <div
                 ref={mobileRef}
@@ -105,11 +103,7 @@ const EventScroll = ({ event, index }: EventScrollProps) => {
                         target="_blank"
                         className="relative group flex items-center justify-center transition-transform duration-300 hover:scale-105 mr-2! scale-110"
                     >
-                        <img
-                            src={buttonTexture}
-                            alt="Texture"
-                            className="w-[110px]"
-                        />
+                        <img src={buttonTexture} alt="Texture" className="w-[110px]" />
                         <span className="absolute text-xs font-bold tracking-[0.15em] text-[#5e2f0d]">
                             Go
                         </span>
@@ -117,7 +111,7 @@ const EventScroll = ({ event, index }: EventScrollProps) => {
                 </div>
             </div>
 
-            {/* ---------- DESKTOP SCROLL ---------- */}
+            {/* DESKTOP */}
 
             <div
                 className="hidden md:flex flex-col items-center w-full"
@@ -136,7 +130,7 @@ const EventScroll = ({ event, index }: EventScrollProps) => {
                     style={{
                         backgroundImage: `url(${paperTexture})`,
                         backgroundSize: "100% 100%",
-                        height: "0px",
+                        height: "280px",
                     }}
                 >
                     <div

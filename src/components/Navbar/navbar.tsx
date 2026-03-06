@@ -74,13 +74,13 @@ const Navbar = ({ heroRef, startTransition }: NavbarProps) => {
             transformOrigin: "100% 0%",
         });
 
-        gsap.to(nav, {
-            rotation: 1,
-            duration: 2.5,
-            ease: "sine.inOut",
-            repeat: -1,
-            yoyo: true,
-        });
+        // gsap.to(nav, {
+        //     rotation: 1,
+        //     duration: 2.5,
+        //     ease: "sine.inOut",
+        //     repeat: -1,
+        //     yoyo: true,
+        // });
 
         const lanterns = nav.querySelectorAll(".lantern-wrapper");
 
@@ -139,49 +139,36 @@ const Navbar = ({ heroRef, startTransition }: NavbarProps) => {
             },
         });
 
-        const hoverArea = nav.querySelector('.navbar-hover-area') as HTMLElement;
-
-        const handleMouseEnter = () => {
+        const onMouseEnter = ()=>{
             if (!scaled) return;
-
             hovered = true;
-
-            gsap.killTweensOf(nav, "scaleX,scaleY");
             gsap.to(nav, {
-                scaleX: defaultScale,
+                 scaleX: defaultScale,
                 scaleY: defaultScale + 0.05,
                 duration: 0.3,
                 ease: "power2.out",
                 overwrite: "auto",
-            });
-        };
-
-        const handleMouseLeave = () => {
+            })
+        }
+        const onMouseLeave = ()=>{
             if (!scaled) return;
-
             hovered = false;
-
-            gsap.killTweensOf(nav, "scaleX,scaleY");
             gsap.to(nav, {
                 scaleX: scaleDownFactor,
                 scaleY: scaleDownFactor + 0.05,
                 duration: 0.3,
                 ease: "power2.out",
                 overwrite: "auto",
-            });
-        };
-
-        if (hoverArea) {
-            hoverArea.addEventListener("mouseenter", handleMouseEnter);
-            hoverArea.addEventListener("mouseleave", handleMouseLeave);
+            })
         }
+
+        nav.addEventListener("mouseenter", onMouseEnter)
+        nav.addEventListener("mouseleave", onMouseLeave)
 
         return () => {
             scrollTrigger.kill();
-            if (hoverArea) {
-                hoverArea.removeEventListener("mouseenter", handleMouseEnter);
-                hoverArea.removeEventListener("mouseleave", handleMouseLeave);
-            }
+            nav.removeEventListener("mouseenter", onMouseEnter);
+            nav.removeEventListener("mouseleave", onMouseLeave);
         };
     }, [heroRef]);
 
@@ -299,7 +286,6 @@ const Navbar = ({ heroRef, startTransition }: NavbarProps) => {
     return (
         <>
             <div ref={navRef} className="navbar">
-                <div className="navbar-hover-area" />
                 <img className="branch" src={branch} alt="branch" />
 
                 <div className="lanterns">
@@ -360,11 +346,10 @@ const Navbar = ({ heroRef, startTransition }: NavbarProps) => {
                         <nav className="mobile-menu-nav">
                             {mobileNavItems.map((item) =>
                                 item.isRoute ? (
-                                    <Link
+                                    <div
                                         key={item.id}
-                                        to={`/${item.id}`}
                                         className="mobile-menu-item"
-                                        onClick={() => setMobileMenuOpen(false)}
+                                        onClick={() => {setMobileMenuOpen(false);startTransition("/team")}}
                                     >
                                         <img
                                             src={passBrushstroke}
@@ -374,7 +359,7 @@ const Navbar = ({ heroRef, startTransition }: NavbarProps) => {
                                         <span className="mobile-menu-item-label">
                                             {item.label}
                                         </span>
-                                    </Link>
+                                    </div>
                                 ) : (
                                     <a
                                         key={item.id}
