@@ -45,7 +45,7 @@ const Hero = forwardRef<HTMLDivElement>((_, ref) => {
 
   return (
     <>
-      <section ref={ref} className="relative min-h-screen w-full overflow-hidden">
+      <section ref={ref} className="relative min-h-screen w-full overflow-hidden" id="home">
         <div ref={bgRef} className="hero-bg-layer" style={{ backgroundImage: "url('/bg-layer.webp')" }} />
         <div ref={hutRef} className="hero-hut-layer" style={{ backgroundImage: "url('/hut-layer.webp')" }}/>
         <div ref={rocksRef} className="hero-rocks-layer" style={{ backgroundImage: "url('/rocks-layer.webp')" }}/>

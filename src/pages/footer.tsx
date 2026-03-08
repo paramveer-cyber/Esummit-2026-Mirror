@@ -5,14 +5,20 @@ const Footer = () => {
     const { scrollTo } = useContext(LenisContext);
 
     const handleNavClick = (target: string) => {
-        scrollTo(target);
+        if(target.startsWith("#")) {
+            if(typeof scrollTo === "function") {
+                scrollTo(target);
+            }
+        } else {
+            window.location.href = target
+        }
     };
 
     const navLinks = [
         { name: "Home", target: "#home" },
         { name: "Speakers", target: "#speakers" },
         { name: "Events", target: "#events" },
-        { name: "Team", target: "#team" },
+        { name: "Team", target: "/team" },
     ];
 
     return (
@@ -80,7 +86,7 @@ const Footer = () => {
                         <div className="flex gap-4 mt-1">
                             {[
                                 { label: "Instagram", href: "https://www.instagram.com/esummit_iiitd/?hl=en" },
-                                { label: "Unstop", href: "https://unstop.com/college-fests/e-summit25-iiit-delhi-iiit-delhi-345569" },
+                                { label: "Unstop", href: "https://unstop.com/college-fests/e-summit-2026-indraprastha-institute-of-information-technology-iiit-delhi-433525" },
                                 { label: "LinkedIn", href: "https://www.linkedin.com/company/entrepreneurship-summit-iiit-delhi?originalSubdomain=in" },
                             ].map((social) => (
                                 <a
