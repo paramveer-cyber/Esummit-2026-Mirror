@@ -414,6 +414,10 @@ const TeamPage = ({ startTransition }: teamProps) => {
                             </motion.div>
 
                         </motion.div>
+                        
+                    ))}
+                    {Array.from({ length: 3 }).map((_, i) => (
+                        <div key={`dummy-${i}`} className="w-full max-w-[320px] sm:max-w-90 aspect-3/1 opacity-0 pointer-events-none" />
                     ))}
 
                 </div>
