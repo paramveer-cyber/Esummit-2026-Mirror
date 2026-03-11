@@ -49,7 +49,7 @@
 /* ── Day Switcher ── */
 .schedule-jp-day-switcher {
   display: flex;
-  gap: 1rem;
+  gap: 2.5rem;
   justify-content: center;
   margin-bottom: 3rem;
   z-index: 2;

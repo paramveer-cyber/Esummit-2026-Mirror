@@ -160,12 +160,12 @@ const Schedule = ({ startTransition }: ScheduleProps) => {
                                         {String(i + 1).padStart(2, "0")}
                                     </span>
 
-                                    <div className="schedule-jp-card-title">{event.name}</div>
-                                    <div className="schedule-jp-card-desc">
+                                    <div className="schedule-jp-card-title scale-150 mx-20!">{event.name}</div>
+                                    <div className="schedule-jp-card-desc scale-125 mx-15!">
                                         {event.description}
                                     </div>
 
-                                    <div className="schedule-jp-card-meta">
+                                    <div className="schedule-jp-card-meta  scale-125 mx-15!">
                                         <span className="schedule-jp-card-time">
                                             <span className="meta-icon">⏐</span>
                                             {event.time}

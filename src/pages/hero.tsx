@@ -9,11 +9,14 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "../styles/hero.css";
 
 gsap.registerPlugin(ScrollTrigger);
+interface ScheduleProps {
+    startTransition: (targetRoute: string) => void;
+}
 
 const windowWidth = typeof window !== "undefined" ? window.innerWidth : 0;
 
-const Hero = forwardRef<HTMLDivElement>((_, ref) => {
-  const bgRef = useRef<HTMLDivElement>(null);
+const Hero = forwardRef<HTMLDivElement, ScheduleProps>(
+  ({ startTransition }, ref) => {  const bgRef = useRef<HTMLDivElement>(null);
   const hutRef = useRef<HTMLDivElement>(null);
   const transitionRef = useRef<HTMLDivElement>(null);
   const rocksRef = useRef<HTMLDivElement>(null);
@@ -61,9 +64,9 @@ const Hero = forwardRef<HTMLDivElement>((_, ref) => {
         {windowWidth < 768 && (
           <div className="hero-mobile-pass-container w-full flex justify-center items-center" ref={buttonRef}>
             <img src={passBrushstroke} alt="" className="hero-mobile-pass-img scale-125" />
-            <a href="/schedule" className="hero-mobile-pass-link scale-125">
+            <div onClick={()=>{startTransition("/schedule")}} className="hero-mobile-pass-link scale-125">
               Schedule
-            </a>
+            </div>
           </div>
         )}
         
@@ -72,9 +75,9 @@ const Hero = forwardRef<HTMLDivElement>((_, ref) => {
             <img src={twentySix} alt="26" className="w-lg" />
             <div className="w-96 flex items-center justify-center relative">
               <img src={passBrushstroke} alt="" />
-              <a href="/schedule" className="absolute inset-0 flex items-center justify-center font-['Akumaru'] text-[43px] text-[#98440C]">
+              <div onClick={()=>{startTransition("/schedule")}} className="cursor-pointer absolute inset-0 flex items-center justify-center font-['Akumaru'] text-[43px] text-[#98440C]">
                 Schedule
-              </a>
+              </div>
             </div>
           </div>
         </div>)}

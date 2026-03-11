@@ -42,7 +42,6 @@ const Zonals: React.FC = () => {
         />
       </div>
 
-      <hr />
     </section>
   );
 };

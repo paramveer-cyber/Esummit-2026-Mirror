@@ -54,7 +54,7 @@ function RouterContent({ startTransition }: { startTransition: (targetRoute: str
                 element={
                     <>
                         <Navbar heroRef={heroRef} startTransition={startTransition} />
-                        <Hero ref={heroRef} />
+                        <Hero ref={heroRef} startTransition={startTransition} />
                         <About />
                         <SharedSection startTransition={startTransition} />
                         <Petals count={50} />
