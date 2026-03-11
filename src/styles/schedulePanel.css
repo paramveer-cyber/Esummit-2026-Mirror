@@ -475,33 +475,6 @@
   font-style: italic;
 }
 
-/* ── Download Button ── */
-.schedule-jp-download-wrap {
-  margin-top: 1.5rem;
-  z-index: 2;
-}
-
-.schedule-jp-download-btn {
-  font-family: 'Akumaru', serif;
-  font-size: 1rem;
-  color: #98440C;
-  background: linear-gradient(135deg, #fff8f0 0%, #fef3e0 100%);
-  border: 3px solid #1a1a1a;
-  border-radius: 4px;
-  padding: 0.75rem 2rem;
-  cursor: pointer;
-  letter-spacing: 0.06em;
-  transition: all 0.3s ease;
-  box-shadow: 4px 4px 0px #1a1a1a;
-}
-
-.schedule-jp-download-btn:hover {
-  background: linear-gradient(135deg, #fef3e0 0%, #fde68a 100%);
-  transform: translateY(-2px);
-  box-shadow: 6px 6px 0px #1a1a1a;
-}
-
-/* ═══════════════════════ RESPONSIVE ═══════════════════════ */
 
 @media (max-width: 768px) {
   .schedule-jp-page {

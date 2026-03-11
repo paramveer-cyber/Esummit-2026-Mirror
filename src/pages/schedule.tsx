@@ -206,13 +206,6 @@ const Schedule = ({ startTransition }: ScheduleProps) => {
                 Schedule is subject to minor changes. Final program will be sent to all
                 registered attendees.
             </div>
-
-            {/* Download */}
-            <div className="schedule-jp-download-wrap">
-                <button className="schedule-jp-download-btn">
-                    Download Full Program (PDF)
-                </button>
-            </div>
         </div>
     );
 };
